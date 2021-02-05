@@ -31,4 +31,55 @@ i(t) = \frac{dq}{qt} \Rightarrow \text{\rl{محاسبه جریان متغیر ب
 \end{gather}
 
 \subsubsection*{جهت جریان}
-بصورت قراردادی در هر المان الکتریکی از طرف قطب مثبت به طرف قطب منفی یعنی خلاف جهت حرکت الکترون‌ها.
+بصورت قراردادی در هر المان الکتریکی از طرف قطب مثبت به طرف قطب منفی یعنی خلاف جهت حرکت الکترون‌ها. برای مثال در مقاومت زیر جهت جریان از سمت مثبت به منفی می‌باشد.
+
+\begin{center}
+	\begin{circuitikz}
+		\draw (-2,0) to[R] (2,0);
+		\node[xshift=-0.75cm,yshift=0.25cm] () {+};
+		\node[xshift=0.75cm,yshift=0.25cm] () {-};
+		\node[xshift=-1.5cm,yshift=0.25cm] () {$\rightarrow$};
+		\node[xshift=-1.85cm,yshift=0.25cm] () {I};
+	\end{circuitikz}
+\end{center}
+
+\subsubsection*{انواع جریان الکتریکی}
+جریان‌های الکتریکی دو نوع هستند:
+\begin{description}
+	\item[مستقیم]
+	جهت و مقدار الکترونهای عبوری نسبت به زمان ثابت می‌ماند. نمودار جریان الکتریکی نسبت به زمان به صورت زیر است:
+	\begin{center}
+		\begin{pspicture}(-3,-3)(3,3)
+			\psset{algebraic}
+			\psaxes[ticks=none,labels=none,]{->}(0,0)(-0.5,-0.5)(2.5,2.5)
+			\psplot[linecolor=red]{0}{1.5}{1}
+		\end{pspicture}
+	\end{center}
+	
+	
+	\item[متناوب]
+	جهت حرکت و مقدار جریان در فواصل زمانی معین تغییر می‌کند. جریان متناوب خود نیز با توجه به نوع تغییرات به انواعی از سینوسی، دندان اره‌ای، مربعی(پالسی) و ... تقسیم می‌شود. برای درک شهودی نیز می‌توان به نمودار جریان متناوب سینوسی توجه کرد.
+	\begin{center}
+		\begin{pspicture}(-3,-3)(3,3)
+			\psset{algebraic}
+			\psaxes[ticks=none,labels=none,]{->}(0,0)(-2.5,-2.5)(2.5,2.5)
+			\psplot[linecolor=green]{-1.5}{1.5}{sin(3*x)}
+		\end{pspicture}
+	\end{center}
+\end{description}
+
+\subsection{اختلاف پتانسیل(ولتاژ)}
+عاملی است برای حرکت الکترون‌ها از نقطه‌ای به نقطه‌ی دیگر. واحد آن 
+\textbf{ولت(v)}
+ است و از فرمول زیر محاسبه می‌شود:
+\begin{gather}
+	V= \frac{W}{Q}
+\end{gather}
+
+\subsection{توان}
+به زبان ساده به معنای سرعت انجام کار است یعنی مقدار کاری که یک دستگاه در واحد زمان انجام می‌دهد. واحد آن 
+\textbf{وات(w)}
+است و برای محاسبه‌ی آن می‌توان از رابطه‌های زیر استفاده کرد:
+\begin{align}
+	W = P.t \Rightarrow V = \frac{P.t}{Q} \Rightarrow P = \frac{V.Q}{t} \Rightarrow \boxed{P=VI}
+\end{align}
