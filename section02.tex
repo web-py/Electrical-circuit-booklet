@@ -1,0 +1,236 @@
+\section{عناصر مدار و قوانین تجربی}
+
+\subsection{منبع}
+وسیله‌ای که بتواند انرژی غیرالکتریکی را به انرژی الکتریکی و بالعکس تبدیل کند. انواع منبع‌ها عبارتند از:
+\begin{description}
+	\item[مستقل]
+	جریان یا ولتاژ به ساختار داخلی خود منبع مرتبط است.
+	\item[وابسته]
+	جریان و ولتاژ برای خودشان نیست و وابسته به قسمت دیگری از مدار است. مانند منبع تغذیه مادربورد
+\end{description}
+
+\subsubsection*{ولتاژ مستقل}
+
+منبعی که ولتاژ دو سر آن کاملاً مستقل از جریان عبوری از آن باشد، به طوری که با افزایش یا کاهش جریان، ولتاژ دو سر آن همواره ثابت بماند.
+
+\begin{minipage}{0.3\textwidth}
+	\begin{center}
+		\begin{circuitikz}
+			\draw (0,-1) to[american voltage source] (0,1);
+		\end{circuitikz}
+	\end{center}
+\end{minipage}
+\begin{minipage}{0.3\textwidth}
+	\begin{center}
+		\begin{circuitikz}
+			\draw (0,-1) to[battery1] (0,1);
+		\end{circuitikz}
+	\end{center}
+\end{minipage}
+\subsubsection*{جریان مستقل}
+
+منبعی است که جریان عبوری از آن، همواره مستقل از ولتاژ دو سر آن است.
+\begin{center}
+	\begin{circuitikz}
+		\draw (0,-1) to[american current source] (0,1);
+	\end{circuitikz}
+\end{center}
+
+\subsubsection*{ولتاژ وابسته}
+منبعی که ولتاژ آن، به ولتاژ یا جریان قسمت دیگری از مدار وابسته است. دو نوع می‌باشد:
+\begin{itemize}
+	\item
+	وابسته به ولتاژ شاخه دیگر
+	\item
+	وابسته به جریان شاخه دیگر
+\end{itemize}
+
+\begin{minipage}{0.5\textwidth}
+		\begin{center}
+				کنترل شده با ولتاژ
+				
+				$V = \alpha V$
+				
+				\begin{circuitikz}
+				\draw (0,-1) to[american controlled voltage source]  (0,1);
+			\end{circuitikz}
+		\end{center}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+	\begin{center}
+		کنترل شده با جریان
+		
+		$V = \beta I$
+		
+		\begin{circuitikz}
+			\draw (0,-1) to[american controlled voltage source]  (0,1);
+		\end{circuitikz}
+	\end{center}
+\end{minipage}
+
+\subsubsection*{جریان وابسته}
+منبعی که جریان آن به جریان یا ولتاژ قسمت دیگری از مدار وابسته است. دو نوع می‌باشد:
+\begin{itemize}
+	\item
+	کنترل شده با ولتاژ
+	\item
+	کنترل شده با جریان
+\end{itemize}
+
+\begin{minipage}{0.5\textwidth}
+	\begin{center}
+		کنترل شده با جریان
+		
+		$I = \alpha I$
+		
+		\begin{circuitikz}
+			\draw (0,-1) to[american controlled current source]  (0,1);
+		\end{circuitikz}
+	\end{center}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+	\begin{center}
+		کنترل شده با ولتاژ
+		
+		$I = \beta V$
+		
+		\begin{circuitikz}
+			\draw (0,-1) to[american controlled current source]  (0,1);
+		\end{circuitikz}
+	\end{center}
+\end{minipage}
+
+
+\subsection{مقاومت}
+
+یک عنصر دوسر که با عبور جریان الکتریکی از آن یک اختلاف ولتاژ در دو سر آن اتفاق می‌افتد. واحد آن اهم
+($\Omega$)
+ می باشد.
+ 
+\begin{minipage}{0.5\textwidth}
+	\begin{center}
+		\begin{align}
+		\Rightarrow	V= RI
+		\end{align}
+	\end{center}
+\end{minipage}
+\begin{minipage}{0.3\textwidth}
+	\begin{center}
+		\begin{circuitikz}
+			\draw (-2,0) to[R,i=$I$] (2,0);
+			\node[xshift=-0.75cm,yshift=0.25cm] () {+};
+			\node[xshift=0.75cm,yshift=0.25cm] () {-};
+		\end{circuitikz}
+	\end{center}
+\end{minipage}
+
+\begin{minipage}{0.5\textwidth}
+	\begin{center}
+		\begin{align}
+			\Rightarrow	V= -RI
+		\end{align}
+	\end{center}
+\end{minipage}
+\begin{minipage}{0.3\textwidth}
+	\begin{center}
+		\begin{circuitikz}
+			\draw (-2,0) to[R,i<=$I$] (2,0);
+			\node[xshift=-0.75cm,yshift=0.25cm] () {+};
+			\node[xshift=0.75cm,yshift=0.25cm] () {-};
+		\end{circuitikz}
+	\end{center}
+\end{minipage}
+
+\subsubsection*{رسانایی الکتریکی}
+
+\begin{align}
+	G = \frac{1}{R} = \frac{I}{V}
+\end{align}
+
+\textbf{توجه:}
+
+\begin{itemize}
+	\item
+	در مدارهای الکتریکی داغ شدن به معنای وجود مقاومت است.
+	\item
+	مقاومت الکتریکی یک عنصر مصرف کننده است. یعنی جریان الکتریکی را به صورت گرما به محیط می دهد.
+	\item
+	منبع هم تولید کننده و هم مصرف کننده است. مصرف کنندگی به دلیل مقاومت درونی است.
+\end{itemize}
+
+\subsubsection*{توان تلف شده در مقاومت}
+
+\begin{align}
+	P = RI^2 = (RI)I = VI = V(\frac{V}{R}) = \frac{V^2}{R}
+\end{align}
+
+\subsection{قوانین مداری ولتاژ و جریان}
+
+\begin{description}
+	\item[گره:]
+	به محل اتصال دو یا چند عنصر به یکدیگر در یک مدار گرفته گفته می‌شود.
+	\item[حلقه:]
+	مسیری از یک مدار را حلقه گویند، در صورتی که اگر از گره‌ای دلخواه از روی این مسیر شروع به حرکت کنیم از عناصر عبور کنیم بدون اینکه از هیچ یک از گره‌های میان راه، بیش از یک بار بگذریم و دوباره به گره آغازین برگردیم.
+	
+	\begin{figure}[!h]
+		\centering
+		\begin{circuitikz}
+			
+			\draw (-2,-2) to[generic,-*] (-2,2);
+			\node[xshift=-2.2cm,yshift=0.75cm]{+};
+			\node[xshift=-2.2cm,yshift=-0.75cm]{-};
+			\node[xshift=-2.5cm,yshift=0cm]{$V_1$};
+			
+			\draw (2,-2) to[generic,*-*] (2,2);
+			\node[xshift=2.2cm,yshift=0.75cm]{-};
+			\node[xshift=2.2cm,yshift=-0.75cm]{+};
+			\node[xshift=2.5cm,yshift=0cm]{$V_3$};
+			
+			\draw (6,-2) to[generic , -*] (6,2);
+			\node[xshift=6.2cm,yshift=0.75cm]{-};
+			\node[xshift=6.2cm,yshift=-0.75cm]{+};
+			\node[xshift=6.5cm,yshift=0cm]{$V_5$};
+			
+			\draw (-2,2) to[generic] (2,2);
+			\node[xshift=0.75cm,yshift=2.2cm]{+};
+			\node[xshift=-0.75cm,yshift=2.2cm]{-};
+			\node[xshift=0cm,yshift=2.5cm]{$V_2$};
+			
+			\draw (-2,-2) -- (2,-2);
+			
+			
+			\draw (2,2) to[generic] (6,2);
+			\node[xshift=4.75cm,yshift=2.2cm]{-};
+			\node[xshift=3.25cm,yshift=2.2cm]{+};
+			\node[xshift=4cm,yshift=2.5cm]{$V_4$};
+			
+			\draw (2,-2) -- (6,-2);
+			
+			\draw[<-,red] (1,0.5) arc  (30:330:1);
+			\draw[<-,green] (5,0.5) arc  (30:330:1);
+		\end{circuitikz}
+		\caption{گره و حلقه‌ها در مدار}
+	\end{figure}
+	
+	
+\end{description}
+
+\textbf{کنجکاوی:}
+در مدار بالا سه حلقه داریم، دوتا از حلقه‌ها مشخص شده‌اند. حلقه سوم را پیدا کنید.
+
+\subsubsection{قانون مداری جریان}
+جمع جبری همه جریان‌ها در گره برابر صفر است. به عبارت دیگر جمع جریان‌های وارد شده به هر گره با جمع جریان‌های خارج شده از آن گره برابرند.
+\subsubsection{قانون مداری ولتاژ}
+جمع جبری همه‌ی ولتاژها حول یک حلقه، برابر صفر است. برای به کاربر بردن قانون ولتاژها ابتدا جهتی قراردادی به صورت دلخواه در حلقه تعیین می کنیم. ولتاژ عناصری که جهت قراردادی آنها با جهت قراردادی حلقه یکی است را با علامت مثبت و بقیه را با علامت منفی در نظر می‌گیریم. برای مثال قانون ولتاژها برای حلقه‌های موجود در شکل فلان عبارتند از:
+
+\begin{gather*}
+	\begin{cases}
+		-V_2 - V_3 - V_1 = 0 \\
+		-V_2-V_4-V_5-V_1 = 0 \\
+		-V_4 -V_5 + V_3 = 0
+	\end{cases}
+\end{gather*}
+
+
+
+
