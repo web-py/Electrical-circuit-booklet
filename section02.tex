@@ -210,6 +210,7 @@
 			\draw[<-,green] (5,0.5) arc  (30:330:1);
 		\end{circuitikz}
 		\caption{گره و حلقه‌ها در مدار}
+		\label{loop}
 	\end{figure}
 	
 	
@@ -221,7 +222,9 @@
 \subsubsection{قانون مداری جریان}
 جمع جبری همه جریان‌ها در گره برابر صفر است. به عبارت دیگر جمع جریان‌های وارد شده به هر گره با جمع جریان‌های خارج شده از آن گره برابرند.
 \subsubsection{قانون مداری ولتاژ}
-جمع جبری همه‌ی ولتاژها حول یک حلقه، برابر صفر است. برای به کاربر بردن قانون ولتاژها ابتدا جهتی قراردادی به صورت دلخواه در حلقه تعیین می کنیم. ولتاژ عناصری که جهت قراردادی آنها با جهت قراردادی حلقه یکی است را با علامت مثبت و بقیه را با علامت منفی در نظر می‌گیریم. برای مثال قانون ولتاژها برای حلقه‌های موجود در شکل فلان عبارتند از:
+جمع جبری همه‌ی ولتاژها حول یک حلقه، برابر صفر است. برای به کاربر بردن قانون ولتاژها ابتدا جهتی قراردادی به صورت دلخواه در حلقه تعیین می کنیم. ولتاژ عناصری که جهت قراردادی آنها با جهت قراردادی حلقه یکی است را با علامت مثبت و بقیه را با علامت منفی در نظر می‌گیریم. برای مثال قانون ولتاژها برای حلقه‌های موجود در شکل 
+\ref{loop}
+ عبارتند از:
 
 \begin{gather*}
 	\begin{cases}
@@ -232,5 +235,557 @@
 \end{gather*}
 
 
+\subsection{تحلیل مدار تک حلقه‌ای}
+
+\textbf{اهداف:}
+\begin{enumerate}
+	\item
+	محاسبه جریان یا ولتاژ مقاومت
+	\item
+	محاسبه توان جذب شده یا تلف شده توسط هر عنصر
+\end{enumerate}
+
+\textbf{فرض اولیه:}
+	 مقادیر مقاومت‌ها و منبع معلوم است.
+
+\vspace{1cm}
+\noindent
+مراحل انجام تحلیل عبارتند از:
+\begin{description}
+	\item[مرحله اول]
+	انتخاب یک جهت برای جریان مجهول
+	\item[مرحله دوم] 
+	گذاشتن علامت ولتاژ برای هر کدام از مقاومت‌ها.
+	\begin{remark}
+برای سمتی که جریان وارد می‌شود علامت مثبت در نظر گرفته می‌شود.
+	\end{remark}
+
+	\item[مرحله سوم] 
+	استفاده از قانون 
+	\lr{KVL}
+\end{description}
+
+\begin{example}
+	در مدار شکل زیر ولتاژ روی هر مقاومت و توان جذب شده توسط هر عنصر را بدست آورید.
+	
+	\begin{center}
+		\begin{circuitikz}
+			\draw (0,1) to[battery1,l=$12V$] (0,-1);
+			\draw (3,1) to[battery1,l=$3V$] (6,1);
+			\draw (0,1) to[R,l=$3\Omega$,i>=$I$] (3,1);
+			\draw (6,-1) to[R,l=$1.5\Omega$] (6,1);
+			
+		
+			\draw (0,-1) -- (6,-1);
+		\end{circuitikz}
+	\end{center}
+	
+\end{example}
+
+\begin{solu}
+	\begin{description}
+		\item[گام اول] انتخاب جهت جریان مجهول
+	
+		\begin{center}
+		\begin{circuitikz}
+			\draw (0,1) to[battery1,l=$12V$] (0,-1);
+			\draw (3,1) to[battery1,l=$3V$] (6,1);
+			\draw (0,1) to[R,l=$3\Omega$,i>=$I$] (3,1);
+			\draw (6,-1) to[R,l=$1.5\Omega$] (6,1);
+			
+			
+			\draw (0,-1) -- (6,-1);
+			\draw[<-,color=red] (3.5,0.25) arc (30:330:0.5);
+		\end{circuitikz}
+	\end{center}
+	
+	\item[گام دوم] 
+	تعیین علامت ولتاژ هر یک از مقاومت‌ها
+		\begin{center}
+		\begin{circuitikz}
+			\draw (0,1) to[battery1,l=$12V$] (0,-1);
+			\draw (3,1) to[battery1,l=$3V$] (6,1);
+			\draw (0,1) to[R,l=$3\Omega$,i>=$I$] (3,1) node[xshift=-2.25cm,yshift=0.25cm,color=red]{+}
+			node[xshift=-0.75cm,yshift=0.25cm,color=red]{-};
+			\draw (6,-1) to[R,l=$1.5\Omega$] (6,1) node[xshift=0.25cm,yshift=-0.25cm,color=red]{+}
+			node[xshift=0.25cm,yshift=-1.5cm,color=red]{-};
+			
+			
+			\draw (0,-1) -- (6,-1);
+			\draw[<-,color=red] (3.5,0.25) arc (30:330:0.5);
+		\end{circuitikz}
+	\end{center}
+	
+	\item[گام سوم] 
+	استفاده از قانون KVL
+	\begin{gather*}
+		+3I + 3 + 1.5I -12 = 0 \\
+		4.5I - 9 = 0 \Rightarrow I = 2A \\
+		V_3 = 3 \times 2 = 6v \\
+		V_{1.5} = 1.5 \times 2 = 3v \\
+		P_{12v} = -VI = 12 \times 2 = -24w \\
+		P_{3\Omega} = VI = 6 \times 2 = 12w \\
+		P_{3v} = VI = 3 \times 2 = 6w \\
+		P_{1.5\Omega} = VI = 3 \times 2 = 6w \\
+	\end{gather*}
+	
+\end{description}
+\end{solu}
+
+\begin{remark}
+	هر المانی که جذب کننده(مصرف کننده) باشد، توان جذب شده علامت مثبت دارد و تولید کننده‌ها توان جذب شده علامت منفی دارد.
+\end{remark}
+
+\begin{minipage}{0.5\textwidth}
+	\begin{center}
+		\begin{circuitikz}
+			\draw (0,1) to[battery1,i=$I$] (0,-1);
+			\node[xshift=2cm] (node name) {\text{\rl{منبع تولیدکننده}}};
+		\end{circuitikz}
+	\end{center}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+	\begin{center}
+		\begin{circuitikz}
+			\draw (0,1) to[battery1,i>=$I$] (0,-1);
+			\node[xshift=2cm] (node name) {\text{\rl{منبع مصرف کننده}}};
+		\end{circuitikz}
+	\end{center}
+\end{minipage}
 
 
+برای ساده کردن مدارها به مدارهای تک حلقه‌ای می‌توان مقاومت‌ها را با یکدیگر ترکیب کرد. این ترکیب مقاومت‌ها به سه صورت انجام می‌شود:
+\begin{enumerate}
+	\item
+	آرایش سری(متوالی)
+	\item
+	آرایش موازی
+	\item
+	آرایش ستاره-مثلث
+\end{enumerate}
+
+
+
+
+\subsubsection*{آرایش سری(متوالی)}
+
+\begin{center}
+	\begin{circuitikz}
+		\draw (0,1) to[american voltage source,l_=$V_s$] (0,-1);
+		\draw (0,1) to[R,l=$R_1$] (2,1);
+		\draw (2,1) to[R,l=$R_2$] (4,1);
+		\draw (5,1) to[R,l=$R_n$] (7,1);
+		\node[xshift=4.5cm,yshift=1cm] (node name) {$\cdots$};
+		
+		\draw (0,-1) -- (7,-1) -- (7,1);
+		\draw[->] (1,-1.5) -- (1,-0.5) -- (1.5,-0.5) node[xshift=-1cm,yshift=-1cm]{$R_{eq}$};
+	\end{circuitikz}
+\end{center}
+\begin{gather*}
+	R_{eq}=R_1 + R_2 + \cdots + R_n \rightarrow \text{\rl{مقاومتی که منبع می‌بیند.}}
+\end{gather*}
+
+
+
+
+\subsubsection*{آرایش موازی}
+یعنی ولتاژ دو سر مقاومت یکسان است به عبارت دیگر دو سر آنها گره‌های یکسانی است.
+
+\begin{center}
+	\begin{circuitikz}
+		\draw (0,1) to[american voltage source,l_=$V_s$] (0,-1);
+		\draw (2,1) to[R,l_=$R_1$] (2,-1);
+		\draw (4,1) to[R,l_=$R_2$] (4,-1);
+		\draw (6,1) to[R,l=$R_n$] (6,-1);
+		\node[xshift=5cm,yshift=0cm] (node name) {$\cdots$};
+		\node[xshift=5cm,yshift=1cm] (node name) {$\cdots$};
+		\node[xshift=5cm,yshift=-1cm] (node name) {$\cdots$};
+		
+		\draw (0,1) -- (4.5,1);
+		\draw (0,-1) -- (4.5,-1);
+		
+		\draw (5.5,1) -- (6,1);
+		\draw (5.5,-1) -- (6,-1);
+	\end{circuitikz}
+\end{center}
+\begin{gather*}
+	\frac{1}{R_{eq}} = \frac{1}{R_1} + \frac{1}{R_1} + \cdots + \frac{1}{R_n}
+\end{gather*}
+
+
+
+\subsubsection*{آرایش ستاره-مثلث}
+این نوع مدار را با علامت 
+$\Delta - Y $
+نیز نشان می‌دهد. در این مدار به اسامی دقت کنید چرا که در تبدیل مهم است.
+
+\begin{minipage}{0.5\textwidth}
+	\begin{center}
+		\begin{circuitikz}
+			\draw (0,0) to[R,l=$R_c$, *-*] (3,0) node[yshift=0.35cm]{b};
+			\draw (3,0) to[R,l=$R_a$, *-*] (1.5,-3) node[yshift=-0.35cm]{c};
+			\draw (1.5,-3) to[R,l=$R_b$, *-*] (0,0) node[yshift=0.35cm]{a};
+		\end{circuitikz}
+	\end{center}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+		\begin{center}
+		\begin{circuitikz}
+			\draw (1.5,-1.5) to[R,l=$R_1$, *-*] (0,0) node[yshift=0.35cm]{a};
+			\draw (1.5,-1.5) to[R,l_=$R_2$, *-*] (3,0) node[yshift=0.35cm]{b};
+			\draw (1.5,-1.5) to[R,l=$R_3$, *-*] (1.5,-3) node[yshift=-0.35cm]{a};
+		\end{circuitikz}
+	\end{center}
+\end{minipage}
+
+
+\begin{gather*}
+	\text{\rl{تبدیل ستاره به مثلث}} \rightarrow
+	\begin{cases}
+		R_a = \frac{R_1R_2 + R_1R_3 + R_2R_3}{R_1}\vspace{0.5cm} \\
+		R_b = \frac{R_1R_2 + R_1R_3 + R_2R_3}{R_2} \vspace{0.5cm}\\
+		R_c = \frac{R_1R_2 + R_1R_3 + R_2R_3}{R_3} \\
+	\end{cases}
+\end{gather*}
+
+\begin{gather*}
+	\text{\rl{تبدیل مثلث به ستاره}} \rightarrow
+	\begin{cases}
+		R_1 = \frac{R_bR_c}{R_a + R_b + R_c} \vspace{0.5cm}\\ 
+		R_2 = \frac{R_aR_c}{R_a + R_b + R_c} \vspace{0.5cm} \\ 
+		R_3 = \frac{R_aR_b}{R_a + R_b + R_c}\\ 
+	\end{cases}
+\end{gather*}
+
+\begin{example}
+	در مدار شکل زیر جریان 
+	$I_s$
+	را بدست آورید.
+	
+	\begin{center}
+		\begin{circuitikz}
+			\draw (0,1.5) to[american voltage source,l_=$12v$] (0,-1.5);
+			\draw (3,-1.5) to[R,l=$18\Omega$] (3,1.5);
+			\draw (6,-1.5) to[R,l=$6\Omega$] (6,1.5);
+			\draw (0,1.5) to[R,l=$4\Omega$,i=$I_s$] (3,1.5);
+			\draw (3,1.5) to[R,l=$3\Omega$] (6,1.5);
+			
+			\draw (0,-1.5) -- (6,-1.5);
+		\end{circuitikz}
+	\end{center}
+\end{example}
+\begin{solu}
+	\ \\
+	\begin{gather*}
+		R_{3,6} = R_3 + R_6 = 3+6=9\Omega
+	\end{gather*}
+\begin{minipage}{0.6\textwidth}
+		\begin{center}
+		\begin{circuitikz}
+			\draw (0,1.5) to[american voltage source,l=$12v$] (0,-1.5);
+			\draw (3,-1.5) to[R,l=$18\Omega$] (3,1.5);
+			\draw (6,-1.5) to[R,l=$9\Omega$,color=red] (6,1.5);
+			\draw (0,1.5) to[R,l=$4\Omega$,i=$I_s$] (3,1.5);
+			\draw (3,1.5) -- (6,1.5);
+			
+			\draw (0,-1.5) -- (6,-1.5);
+		\end{circuitikz}
+	\end{center}
+\end{minipage}
+\begin{minipage}{0.6\textwidth}
+	\begin{center}
+		\begin{circuitikz}
+			\draw (0,1.5) to[american voltage source,l_=$12v$] (0,-1.5);
+			\draw (3,-1.5) to[R,l=$18\Omega$] (3,1.5);
+			\draw (6,-1.5) to[R,l=$6\Omega$,color=red] (6,1.5);
+			\draw (0,1.5) to[R,l=$4\Omega$,i=$I_s$] (3,1.5);
+			\draw (3,1.5) to[R,l=$3\Omega$,color=red] (6,1.5);
+			
+			\node [xshift=7cm,yshift=0cm]{$\Rightarrow$};
+			
+			\draw (0,-1.5) -- (6,-1.5);
+		\end{circuitikz}
+	\end{center}
+\end{minipage}
+
+\begin{gather*}
+	\frac{1}{R_{eq}} = \frac{1}{9} + \frac{1}{18} \Rightarrow R_{eq} = 6\Omega
+\end{gather*}
+
+\begin{minipage}{0.4\textwidth}
+	\begin{center}
+		\begin{circuitikz}
+			\draw (0,1.5) to[american voltage source,l=$12v$] (0,-1.5);
+			\draw (3,-1.5) to[R,l=$6\Omega$,color=red] (3,1.5);
+		
+			\draw (0,1.5) to[R,l=$4\Omega$,i=$I_s$] (3,1.5);
+			
+			
+			\draw (0,-1.5) -- (3,-1.5);
+		\end{circuitikz}
+	\end{center}
+\end{minipage}
+\begin{minipage}{0.6\textwidth}
+	\begin{center}
+	\begin{circuitikz}
+		\draw (0,1.5) to[american voltage source,l=$12v$] (0,-1.5);
+		\draw (3,-1.5) to[R,l=$18\Omega$,color=red] (3,1.5);
+		\draw (6,-1.5) to[R,l=$9\Omega$,color=red] (6,1.5);
+		\draw (0,1.5) to[R,l=$4\Omega$,i=$I_s$] (3,1.5);
+		\draw (3,1.5) -- (6,1.5);
+		
+		\node [xshift=7cm,yshift=0cm]{$\Rightarrow$};
+		
+		\draw (0,-1.5) -- (6,-1.5);
+	\end{circuitikz}
+\end{center}
+\end{minipage}
+
+\begin{gather*}
+	R_{eq} = 4 + 6 = 10\Omega
+\end{gather*}
+
+
+\begin{minipage}{0.4\textwidth}
+	\begin{center}
+		\begin{circuitikz}
+			\draw (0,1.5) to[american voltage source,l_=$12v$] (0,-1.5);
+			\draw (3,-1.5) to[R,l_=$10\Omega$,color=red] (3,1.5);
+			
+			\draw (0,1.5) to[short,i=$I_s$] (3,1.5);
+			
+			\draw[->,color=blue] (1,-0.25) arc (210:-30:0.5);
+			\draw (0,-1.5) -- (3,-1.5);
+		\end{circuitikz}
+	\end{center}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+	\begin{center}
+		\begin{circuitikz}
+			\draw (0,1.5) to[american voltage source,l=$12v$] (0,-1.5);
+			\draw (3,-1.5) to[R,l=$6\Omega$,color=red] (3,1.5);
+			
+			\draw (0,1.5) to[R,l=$4\Omega$,i=$I_s$,color=red] (3,1.5);
+			
+			\node [xshift=4.5cm,yshift=0cm]{$\Rightarrow$};
+			\draw (0,-1.5) -- (3,-1.5);
+		\end{circuitikz}
+	\end{center}
+\end{minipage}
+
+\begin{gather*}
+	-12 + 10 I_s = 0 \rightarrow 10 I_s = 12 \rightarrow I_s = \frac{12}{10} = 1.2 A
+\end{gather*}
+\end{solu}
+
+\vspace{1cm}
+\begin{example}
+	در مدار شکل زیر جریان I را بدست آورید.
+	
+	\begin{center}
+		\begin{circuitikz}
+			\draw (0,2) to[battery1,l=$40v$] (0,-2);
+			\draw (0,2) to[R,l=$54\Omega$] (5,2);
+			\draw (5,1.5) to[R,l=$30\Omega$] (7,0);
+			\draw (5,1.5) to[R,l_=$20\Omega$] (3,0);
+			\draw (3,0) to[R,l_=$50\Omega$] (5,-1.5);
+			\draw (7,0) to[R,l=$15\Omega$] (5,-1.5);
+			\draw (3,0) to[R,l=$50\Omega$] (7,0);
+			
+			\draw (0,-2) -- (5,-2) -- (5,-1.5);
+			\draw (5,2) -- (5,1.5);
+		\end{circuitikz}
+	\end{center}
+\end{example}
+
+
+\begin{solu}
+	قسمت مشخص شده در مدار زیر را به فرم ستاره‌ای تبدیل می‌شود.
+	
+	\begin{minipage}{0.5\textwidth}
+		\begin{gather*}
+			\begin{cases}
+				R_1 = \frac{20 \times 30 }{20+30+50} = 6\Omega \vspace{0.5cm} \\
+				R_2 = \frac{30 \times 50 }{20+30+50} = 15\Omega \vspace{0.5cm} \\
+				R_3 = \frac{50 \times 20 }{20+30+50} = 10 \Omega  \vspace{0.5cm} \\
+			\end{cases}
+		\end{gather*}
+	\end{minipage}
+	\begin{minipage}{0.5\textwidth}
+		\begin{center}
+			\begin{circuitikz}
+				\draw (0,2) to[battery1,l=$40v$] (0,-2);
+				\draw (0,2) to[R,l=$54\Omega$] (5,2);
+				\draw (5,1.5) to[R,l=$30\Omega$] (7,0);
+				\draw (5,1.5) to[R,l_=$20\Omega$] (3,0);
+				\draw (3,0) to[R,l_=$50\Omega$] (5,-1.5);
+				\draw (7,0) to[R,l=$15\Omega$] (5,-1.5);
+				\draw (3,0) to[R,l=$50\Omega$] (7,0);
+				
+				\node[rectangle,draw,dashed,color=red,minimum height=2cm,minimum width=4cm,xshift=5cm,yshift=0.75cm]  {};
+				\node[yshift=-3cm,xshift=3cm] (node name) {$\Downarrow$};
+				
+				\draw (0,-2) -- (5,-2) -- (5,-1.5);
+				\draw (5,2) -- (5,1.5);
+			\end{circuitikz}
+		\end{center}
+	\end{minipage}
+
+
+
+	\begin{minipage}{0.4\textwidth}
+	\begin{gather*}
+		\begin{cases}
+			R_{3,4} =10+50 = 60\Omega \vspace{0.5cm} \\
+			R_{2,5} = 15+15 = 30\Omega \\
+		\end{cases}
+	\end{gather*}
+\end{minipage}
+\begin{minipage}{0.6\textwidth}
+	\begin{center}
+		\begin{circuitikz}
+			\draw (0,3) to[battery1,l=$40v$] (0,-3);
+			\draw (0,3) to[R,l=$54\Omega$] (5,3);
+			\draw (5,3) to[R,l=$R_1 \text{=} 6\Omega$] (5,1);
+			\draw (4,1) to[R,l_=$R_3 \text{=}10\Omega$,color=red] (4,-1);
+			\draw (6,1) to[R,l=$R_2 \text{=}15\Omega$,color=blue] (6,-1);
+			\draw (4,-1) to[R,l_=$R_4 \text{=}50\Omega$,color=red] (4,-2.5);
+			\draw (6,-1) to[R,l=$R_5 \text{=}15\Omega$,color=blue] (6,-2.5);
+			
+			\draw (4,1) -- (6,1);
+			\draw (4,-2.5) -- (6,-2.5);
+			\draw (0,-3) -- (5,-3) -- (5,-2.5);
+		\end{circuitikz}
+	\end{center}
+\end{minipage}
+
+
+\vspace{0.5cm}
+	\begin{minipage}{0.4\textwidth}
+	\begin{gather*}
+			\frac{1}{R_{2,3}} = \frac{1}{30} + \frac{1}{60} \Rightarrow R_{2,3} = 20\Omega\\
+	\end{gather*}
+\end{minipage}
+\begin{minipage}{0.6\textwidth}
+	\begin{center}
+		\begin{circuitikz}
+			\draw (0,3) to[battery1,l=$40v$] (0,-3);
+			\draw (0,3) to[R,l=$54\Omega$] (5,3);
+			\draw (5,3) to[R,l=$R_1 \text{=} 6\Omega$] (5,1);
+			\draw (4,1) to[R,l_=$R_3 \text{=}60\Omega$,color=red] (4,-2.5);
+			\draw (6,1) to[R,l=$R_2 \text{=}30\Omega$,color=red] (6,-2.5);
+			
+	
+			
+			\draw (4,1) -- (6,1);
+			\draw (4,-2.5) -- (6,-2.5);
+			\draw (0,-3) -- (5,-3) -- (5,-2.5);
+		\end{circuitikz}
+	\end{center}
+\end{minipage}
+
+\vspace{0.5cm}
+	\begin{minipage}{0.4\textwidth}
+	\begin{gather*}
+		 R_{1,2} = 6 + 20 = 26\Omega\\
+	\end{gather*}
+\end{minipage}
+\begin{minipage}{0.6\textwidth}
+	\begin{center}
+		\begin{circuitikz}
+			\draw (0,2) to[battery1,l=$40v$] (0,-2);
+			\draw (0,2) to[R,l=$54\Omega$] (3,2);
+			\draw (3,2) to[R,l=$R_1 \text{=} 6\Omega$,color=red] (3,0);
+			\draw (3,0) to[R,l=$R_2 \text{=}20\Omega$,color=red] (3,-2);
+				
+			\draw (0,-2) -- (3,-2);
+		\end{circuitikz}
+	\end{center}
+\end{minipage}
+
+
+\vspace{0.5cm}
+	\begin{minipage}{0.4\textwidth}
+	\begin{gather*}
+		R_{eq} = 54+26 = 80\Omega\\
+	\end{gather*}
+\end{minipage}
+\begin{minipage}{0.6\textwidth}
+	\begin{center}
+		\begin{circuitikz}
+			\draw (0,1) to[battery1,l_=$40v$] (0,-1);
+			\draw (0,1) to[R,l=$54\Omega$,color=red] (2,1);
+			\draw (2,1) to[R,l=$R_1 \text{=} 26\Omega$,color=red] (2,-1);
+			
+			\draw (0,-1) -- (2,-1);
+		\end{circuitikz}
+	\end{center}
+\end{minipage}
+
+\vspace{0.5cm}
+	\begin{minipage}{0.4\textwidth}
+	\begin{gather*}
+		I = \frac{40}{80} = 0.5 A\\
+	\end{gather*}
+\end{minipage}
+\begin{minipage}{0.6\textwidth}
+	\begin{center}
+		\begin{circuitikz}
+			\draw (0,1) to[battery1,l_=$40v$] (0,-1);
+			\draw (0,1) to[short,i=$I$] (2,1);
+			\draw (2,1) to[R,l=$ 80\Omega$] (2,-1);
+			
+			\draw (0,-1) -- (2,-1);
+		\end{circuitikz}
+	\end{center}
+\end{minipage}
+
+\end{solu}
+
+
+\vspace{1cm}
+\subsubsection*{مدار تقسیم ولتاژ}
+
+\begin{minipage}{0.5\textwidth}
+	\begin{center}
+		\begin{gather*}
+			V_1 = \frac{R_1}{R_1 + R_2 + \cdots + R_n} \times V \vspace{0.75cm} \\
+			V_2 = \frac{R_2}{R_1 + R_2 + \cdots + R_n} \times V \vspace{0.75cm} \\
+			\vdots \vspace{0.5cm} \\
+			V_n = \frac{R_n}{R_1 + R_2 + \cdots + R_n} \times V \vspace{0.75cm} \\
+		\end{gather*}
+	\end{center}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+	\begin{center}
+		\begin{circuitikz}
+			\draw (0,3) to[american voltage source,v<=$V$] (0,-3);
+			
+			\draw (2,3) to[R,l=$R_1$] (2,1);
+			\draw (2,1) to[R,l=$R_2$] (2,0);
+			\node[xshift=2cm,yshift=-0.5cm]() {$\vdots$};
+			\draw (2,-1) to[R,l=$R_n$] (2,-3);
+			
+			\draw (0,3) -- (2,3);
+			\draw (0,-3) -- (2,-3);
+		\end{circuitikz}
+	\end{center}
+\end{minipage}
+
+\subsubsection*{مدار تقسیم جریان}
+
+\begin{center}
+	\begin{circuitikz}
+		\draw (0,-1.5) to[american current source] (0,1.5);
+		\draw (2,-1.5) to[R,l=$R_1$,i<=$I_1$] (2,1.5);
+		\draw (4,-1.5) to[R,l=$R_2$,i<=$I_2$] (4,1.5);
+		
+		\draw (0,1.5) -- (4,1.5);
+		\draw (0,-1.5) -- (4,-1.5);
+	\end{circuitikz}
+\end{center}
+
+
+\begin{gather*}
+	I_1 = \frac{R_2}{R_1 + R_2} I \qquad 	I_2 = \frac{R_1}{R_1 + R_2} I 
+\end{gather*}
