@@ -1,10 +1,14 @@
 \documentclass[12pt]{article}
+\usepackage[labelsep=space]{caption}
+\usepackage{background}
+\backgroundsetup{contents=webpy.ir, opacity=0.45, scale=3}
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{pstricks,pst-plot}
 \usepackage{tikz}
 \usepackage{circuitikz}
 \usepackage{xepersian}
+
 \settextfont{XB VNiloofar}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -29,13 +33,14 @@
 
 
 \begin{document}
+	\NoBgThispage
 	\includegraphics[height=12cm]{images/besm}
 	\title{جزوه مدار الکتریکی و الکترونیکی }
-	\author{names}
+	\author{همکلاسی}
 	\maketitle
 	\vspace*{1.5cm}
 	\begin{abstract}
-		content...
+		
 	\end{abstract}
 	
 	\newpage
@@ -44,4 +49,7 @@
 	\include{intro}
 	\include{section01}
 	\include{section02}
+	\include{section03}
+	\include{section04}
+	\include{section05}
 \end{document}

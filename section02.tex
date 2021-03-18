@@ -105,7 +105,7 @@
 
 یک عنصر دوسر که با عبور جریان الکتریکی از آن یک اختلاف ولتاژ در دو سر آن اتفاق می‌افتد. واحد آن اهم
 ($\Omega$)
- می باشد.
+ می‌باشد.
  
 \begin{minipage}{0.5\textwidth}
 	\begin{center}
@@ -153,7 +153,7 @@
 	\item
 	در مدارهای الکتریکی داغ شدن به معنای وجود مقاومت است.
 	\item
-	مقاومت الکتریکی یک عنصر مصرف کننده است. یعنی جریان الکتریکی را به صورت گرما به محیط می دهد.
+	مقاومت الکتریکی یک عنصر مصرف کننده است. یعنی جریان الکتریکی را به صورت گرما به محیط می‌دهد.
 	\item
 	منبع هم تولید کننده و هم مصرف کننده است. مصرف کنندگی به دلیل مقاومت درونی است.
 \end{itemize}
@@ -168,7 +168,11 @@
 
 \begin{description}
 	\item[گره:]
-	به محل اتصال دو یا چند عنصر به یکدیگر در یک مدار گرفته گفته می‌شود.
+	به محل اتصال دو یا چند عنصر به یکدیگر در یک مدار گفته می‌شود.
+	
+	\begin{remark}
+		همیشه بین دو گره مدار حداقل یک المان وجود دارد.
+	\end{remark}
 	\item[حلقه:]
 	مسیری از یک مدار را حلقه گویند، در صورتی که اگر از گره‌ای دلخواه از روی این مسیر شروع به حرکت کنیم از عناصر عبور کنیم بدون اینکه از هیچ یک از گره‌های میان راه، بیش از یک بار بگذریم و دوباره به گره آغازین برگردیم.
 	
@@ -219,9 +223,9 @@
 \textbf{کنجکاوی:}
 در مدار بالا سه حلقه داریم، دوتا از حلقه‌ها مشخص شده‌اند. حلقه سوم را پیدا کنید.
 
-\subsubsection{قانون مداری جریان}
+\subsubsection{قانون مداری جریان(KCL)}
 جمع جبری همه جریان‌ها در گره برابر صفر است. به عبارت دیگر جمع جریان‌های وارد شده به هر گره با جمع جریان‌های خارج شده از آن گره برابرند.
-\subsubsection{قانون مداری ولتاژ}
+\subsubsection{قانون مداری ولتاژ(KVL)}
 جمع جبری همه‌ی ولتاژها حول یک حلقه، برابر صفر است. برای به کاربر بردن قانون ولتاژها ابتدا جهتی قراردادی به صورت دلخواه در حلقه تعیین می کنیم. ولتاژ عناصری که جهت قراردادی آنها با جهت قراردادی حلقه یکی است را با علامت مثبت و بقیه را با علامت منفی در نظر می‌گیریم. برای مثال قانون ولتاژها برای حلقه‌های موجود در شکل 
 \ref{loop}
  عبارتند از:
@@ -600,7 +604,7 @@ $\Delta - Y $
 
 
 \begin{solu}
-	قسمت مشخص شده در مدار زیر را به فرم ستاره‌ای تبدیل می‌شود.
+	قسمت مشخص شده در مدار زیر به فرم ستاره‌ای تبدیل می‌شود.
 	
 	\begin{minipage}{0.5\textwidth}
 		\begin{gather*}
@@ -789,3 +793,222 @@ $\Delta - Y $
 \begin{gather*}
 	I_1 = \frac{R_2}{R_1 + R_2} I \qquad 	I_2 = \frac{R_1}{R_1 + R_2} I 
 \end{gather*}
+
+\begin{remark}
+	\begin{itemize}
+	
+	\item
+	اگر مدار شما به صورت زیر بود می‌توان طرف راست و چپ آن را به صورت مدارهای جداگانه تحلیل کرد.
+	
+	\begin{center}
+		\begin{circuitikz}
+			\draw (0,1.5) to[american voltage source, l_= $10v$] (0,-1.5);
+			\draw (2,-1.5) to[american voltage source,l=$15v$] (2,1.5);
+			\draw (4,-1.5) to[R,l_=$2\Omega$] (4,1.5);
+			\draw (0,1.5) to[R,l=$5\Omega$] (2,1.5);
+			\draw (2,1.5) to[R,l=$3\Omega$] (4,1.5);
+		
+			\draw (0,-1.5) -- (4,-1.5);
+		\end{circuitikz}
+	\end{center}
+
+	\item
+	اگر خواسته‌ی سؤال محاسبه‌ی توان مصرفی باشد، تولیدکننده‌ها علامت منفی و مصرف‌کننده‌ها علامت مثبت می‌گیرند.
+	\item
+	اگر خواسته‌ی سؤال محاسبه توان تولیدی باشد، تولید‌کننده‌ها علامت مثبت و مصرف کننده‌ها در مدار علامت منفی می‌گیرند.
+\end{itemize}
+\end{remark}
+
+
+\newpage
+\vspace{1cm}
+\subsection*{مسائل}
+\rule{\textwidth}{0.1cm}
+\vspace{1cm}
+
+\begin{enumerate}
+	\item 
+	در شکل 
+	\ref{fig_sec02_01}
+	 ولتاژ v را پیدا کنید.
+	\begin{figure}[!h]
+		\centering
+		\includegraphics{images/sec02/01}
+			\caption{}
+		\label{fig_sec02_01}
+	\end{figure}
+
+		\item 
+	در شکل 
+	\ref{fig_sec02_02}
+	 ولتاژ دو سر مقاومت 
+	$3\Omega$
+	 را پیدا کنید.
+	\begin{figure}[!h]
+		\centering
+		\includegraphics{images/sec02/02}
+			\caption{}
+		\label{fig_sec02_02}
+	\end{figure}
+
+		\item 
+	در شکل
+	\ref{fig_sec02_03}
+	توانی که منبع جریان به مدار تحویل می‌دهد به دست آورید.
+	\begin{figure}[!h]
+		\centering
+		\includegraphics{images/sec02/03}
+			\caption{}
+		\label{fig_sec02_03}
+	\end{figure}
+
+		\item 
+	در شکل 
+	\ref{fig_sec02_04}
+مقدار v را پیدا کنید.
+	\begin{figure}[!h]
+		\centering
+		\includegraphics{images/sec02/04}
+			\caption{}
+		\label{fig_sec02_04}
+	\end{figure}
+
+	\item 
+	در شکل 
+	\ref{fig_sec02_05}
+	مقاومت معادل 
+	$R_{eq}$
+	را پیدا کنید.
+	\begin{figure}[!h]
+		\centering
+		\includegraphics{images/sec02/05}
+			\caption{}
+		\label{fig_sec02_05}
+	\end{figure}
+
+		\item 
+	در شکل 
+	\ref{fig_sec02_06}
+	مقاومت معادل 
+	$R_{eq}$
+	را پیدا کنید.
+	\begin{figure}[!h]
+		\centering
+		\includegraphics{images/sec02/06}
+		\caption{}
+		\label{fig_sec02_06}
+	\end{figure}
+
+		\item 
+
+	مقاومت معادل شکل 
+	\ref{fig_sec02_07}
+	را پیدا کنید.
+	\begin{figure}[!h]
+		\centering
+		\includegraphics{images/sec02/07}
+		\caption{}
+		\label{fig_sec02_07}
+	\end{figure}
+
+	\item 
+
+با ترکیب مقاومت‌ها و تقسیم ولتاژ،
+$V_{ab}$
+مدار شکل
+\ref{fig_sec02_08}
+را پیدا کنید.
+	\begin{figure}[!h]
+		\centering
+		\includegraphics{images/sec02/08}
+		\caption{}
+		\label{fig_sec02_08}
+	\end{figure}
+
+		\item 
+	
+	با ترکیب مقاومت‌ها و تقسیم جریان،
+	$I_x$
+	مدار شکل
+	\ref{fig_sec02_09}
+	را پیدا کنید.
+	\begin{figure}[!h]
+		\centering
+		\includegraphics{images/sec02/09}
+		\caption{}
+		\label{fig_sec02_09}
+	\end{figure}
+
+
+		\item 
+	در مدار شکل
+	\ref{fig_sec02_10}
+	$i=5A$
+	مقدار v را پیدا کنید.
+	\begin{figure}[!h]
+		\centering
+		\includegraphics{images/sec02/10}
+		\caption{}
+		\label{fig_sec02_10}
+	\end{figure}
+
+		\item 
+	با کاربرد مستقیم قوانین کیرشهف جریان i را در مدار شکل
+	\ref{fig_sec02_11}
+	بدست آورید.
+	\begin{figure}[!h]
+		\centering
+		\includegraphics{images/sec02/11}
+		\caption{}
+		\label{fig_sec02_11}
+	\end{figure}
+
+		\item 
+	با کاربرد مستقیم قوانین کیرشهف جریان
+	$I_x$
+	را در مدار شکل
+	\ref{fig_sec02_12}
+	بدست آورید.
+	\begin{figure}[!h]
+		\centering
+		\includegraphics{images/sec02/12}
+		\caption{}
+		\label{fig_sec02_12}
+	\end{figure}
+
+		\item 
+	در مدار شکل
+	\ref{fig_sec02_13}
+	مقاومت معادل
+	$R_{eq}$
+	را پیدا کنید.
+	\begin{figure}[!h]
+		\centering
+		\includegraphics{images/sec02/13}
+		\caption{}
+		\label{fig_sec02_13}
+	\end{figure}
+
+		\item 
+	با استفاده از تبدیل مثلث به ستاره جریان i را در شکل
+	\ref{fig_sec02_14}
+	بدست آورید.
+	\begin{figure}[!h]
+		\centering
+		\includegraphics{images/sec02/14}
+		\caption{}
+		\label{fig_sec02_14}
+	\end{figure}
+
+		\item 
+	با استفاده از تبدیل مثلث-ستاره جریان i را در شکل
+	\ref{fig_sec02_15}
+	بدست آورید.
+	\begin{figure}[!h]
+		\centering
+		\includegraphics{images/sec02/15}
+		\caption{}
+		\label{fig_sec02_15}
+	\end{figure}
+
+\end{enumerate}

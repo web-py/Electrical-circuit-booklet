@@ -1,0 +1,888 @@
+\section{روش‌های تحلیل مدار}
+
+\subsection{روش تحلیل گره}
+
+هدف: یافتن ولتاژ گره‌ها
+
+\begin{description}
+	\item[گام اول] 
+	مشخص کردن گره های مدار و نام گذاری آنها
+	\item[گام دوم] 
+	مشخص کردن یک گره به عنوان گره مبنا(ولتاژ گره مبنا صفر فرض می‌شود.)
+	\item[گام سوم] 
+	نوشتن KCL برای هر گره(بجز گره مبنا)
+\end{description}
+
+\begin{example}
+	ولتاژ گره‌های مدار زیر را بیابید.
+	\begin{center}
+	\begin{circuitikz}
+		\draw (0,2) to[american voltage source,l_=$4v$] (0,0);
+		\draw (2,2) to[R,l=$4\Omega$] (2,0);
+		\draw (4,2) to[R,l=$8\Omega$] (4,0);
+		\draw (6,0) to[american current source,l_=$2A$] (6,2);
+		
+		\draw (0,2) to[R,l=$1\Omega$] (2,2);
+		\draw (2,2) to[R,l=$1\Omega$] (4,2);
+		
+		
+		\draw (0,0) -- (6,0);
+		\draw (4,2) -- (6,2);
+	\end{circuitikz}
+	\end{center}
+\end{example}
+
+\begin{solu}
+	
+	\begin{description}
+		\item[گام اول] مشخص کردن گره‌ها و نامگذاری
+		
+			\begin{center}
+			\begin{circuitikz}
+				\draw (0,2) to[american voltage source,l_=$4v$] (0,0) node[xshift=-0.25cm,yshift=2.25cm,color=red]{1};
+				\draw (2,2) to[R,l=$4\Omega$,-*] (2,0) node[xshift=0.25cm,yshift=-0.25cm,color=red]{4};
+				\draw (4,2) to[R,l=$8\Omega$] (4,0);
+				\draw (6,0) to[american current source,l_=$2A$] (6,2);
+				
+				\draw (0,2) to[R,l=$1\Omega$, *-*] (2,2) node[yshift=0.25cm ,color=red]{2};
+				\draw (2,2) to[R,l=$1\Omega$,*-*] (4,2) node[yshift=0.25cm ,color=red]{3};
+				
+				
+				\draw (0,0) -- (6,0);
+				\draw (4,2) -- (6,2);
+			\end{circuitikz}
+		\end{center}
+	
+	\item[گام دوم] مشخص کردن گره مبنا
+	
+	\begin{center}
+		\begin{circuitikz}
+			\draw (0,2) to[american voltage source,l_=$4v$] (0,0) node[xshift=-0.25cm,yshift=2.25cm,color=red]{1};
+			\draw (2,2) to[R,l=$4\Omega$,-*] (2,0) node[xshift=0.25cm,yshift=-0.25cm,color=red]{4};
+			\draw (4,2) to[R,l=$8\Omega$] (4,0);
+			\draw (6,0) to[american current source,l_=$2A$] (6,2);
+			
+			\draw (0,2) to[R,l=$1\Omega$, *-*] (2,2) node[yshift=0.25cm ,color=red]{2};
+			\draw (2,2) to[R,l=$1\Omega$,*-*] (4,2) node[yshift=0.25cm ,color=red]{3};
+			
+			\draw (2,0) to[ground] (2,-1);
+			
+			\draw[color=red] (1.5,-1) -- (2.5,-1);
+			\draw[color=red] (1.75,-1.1) -- (2.25,-1.1);
+			\draw[color=red] (1.9,-1.2) -- (2.1,-1.2);
+			
+			\draw[->] (1.9,-0.1) -- (1,-0.5) node[xshift=-0.75cm]{$V_4 = 0$};
+			
+			\draw (0,0) -- (6,0);
+			\draw (4,2) -- (6,2);
+		\end{circuitikz}
+	\end{center}
+		
+		\item[گام سوم] 
+		نوشتن KCL هر گره
+		
+				\begin{minipage}{0.5\textwidth}
+			
+			\begin{gather*}
+				\Rightarrow
+				\begin{cases}
+					\frac{9}{4}V_2 - V_3 = 4 \vspace{1cm}\\
+					-V_2 + \frac{9}{8}V_3 = 2
+				\end{cases}
+			\end{gather*}
+		\end{minipage}
+		\begin{minipage}{0.5\textwidth}
+			\begin{gather*}
+				\begin{cases}
+					\textcircled{1} V_1 - 0 = 4 \rightarrow V_1 = 4v \vspace{1cm}\\
+					\textcircled{2} \frac{V_2 - V_1}{1} + \frac{V_2-0}{4} + \frac{V_2-V_3}{1} = 0 \vspace{1cm}\\
+					\textcircled{3} \frac{V_3-V_2}{1} + \frac{V_3-0}{8} -2=0
+				\end{cases}
+			\end{gather*}
+		\end{minipage}
+		
+		
+		
+		
+		
+		\begin{minipage}{0.5\textwidth}
+			\begin{gather*}
+				V_3 = \frac{\begin{vmatrix}
+						\frac{9}{4} & 4 \\
+						-1 & 2\\
+				\end{vmatrix}}{\begin{vmatrix}
+						\frac{9}{4} & -1 \\
+						-1 & \frac{9}{8} \\
+				\end{vmatrix}} = 6.51v
+			\end{gather*}
+		\end{minipage}
+		\begin{minipage}{0.5\textwidth}
+			\begin{gather*}
+				V_2 = \frac{\begin{vmatrix}
+						4 & -1 \\
+						2 & \frac{9}{8} \\
+				\end{vmatrix}}{\begin{vmatrix}
+						\frac{9}{4} & -1 \\
+						-1 & \frac{9}{8} \\
+				\end{vmatrix}} = 4.13v
+			\end{gather*}
+		\end{minipage}
+		
+	\end{description}
+	
+	
+
+\end{solu}
+
+
+\vspace{0.5cm}
+\textbf{توجه:}
+\begin{itemize}
+	\item
+	همیشه بین دو گره حداقل یک المان وجود دارد.
+	\item
+	معمولاً پایین ترین گره به عنوان گره مبنا در نظر گرفته می‌شود و زمین می‌شود.(گره ۴)
+	\item
+هنگام نوشتن KCL	برای هر گره فرض می کنیم که جریان‌ها خارج شونده هستند مگر اینکه منبع جریان داشته باشیم.(گره ۳)
+\end{itemize}
+
+\begin{example}
+	ولتاژ گره‌ها را بدست آورید.
+	
+	\begin{center}
+		\begin{circuitikz}
+			\draw (-3,0) to[R,l=$3\Omega$] (3,0);
+			\draw (-3,-1) to[R,l=$2\Omega$] (0,-1);
+			\draw (0,-1) to[R,l=$4\Omega$] (3,-1);
+			\draw (-3,-4) to[american current source,l=$10A$] (-3,-1);
+			\draw (0,-4) to[R,l=$5\Omega$] (0,-1);
+			\draw (3,-4) to[R,l=$6\Omega$] (3,-1);
+			
+			\draw (-3,-4) -- (3,-4);
+			\draw (-3,0) -- (-3,-1);
+			\draw (3,0) -- (3,-1);
+		\end{circuitikz}
+	\end{center}
+	
+\end{example}
+
+
+\begin{solu}
+	\ \\
+		\begin{center}
+		\begin{circuitikz}
+			\draw (-3,0) to[R,l=$3\Omega$] (3,0);
+			\draw (-3,-1) to[R,l=$2\Omega$,*-*] (0,-1) node[red, yshift=0.25cm]{2} node[red, xshift=-3.25cm,yshift=0.25cm]{1};
+			\draw (0,-1) to[R,l=$4\Omega$,-*] (3,-1) node[xshift=0.25cm,red]{3};
+			\draw (-3,-4) to[american current source,l=$10A$] (-3,-1);
+			\draw (0,-1) to[R,l=$5\Omega$,-*] (0,-4) node[red, yshift=-0.25cm,xshift=0.25cm]{4};
+			\draw (3,-4) to[R,l=$6\Omega$] (3,-1);
+			\draw (0,-4) node[cground]{} (0,-5);
+			
+			\draw (-3,-4) -- (3,-4);
+			\draw (-3,0) -- (-3,-1);
+			\draw (3,0) -- (3,-1);
+		\end{circuitikz}
+	\end{center}
+
+	\begin{gather*}
+		\textcircled{1} \Longrightarrow -10 + \frac{V_1-V_2}{2} + \frac{V_1-V_3}{3} = 0
+	\end{gather*}
+	\begin{gather*}
+		\textcircled{2} \Longrightarrow  \frac{V_2-V_1}{2} + \frac{V_2-0}{5} + \frac{V_2 - V_3}{4} = 0
+	\end{gather*}
+	\begin{gather*}
+		\textcircled{3} \Longrightarrow  \frac{V_3-V_2}{4} + \frac{V_3}{6} + \frac{V_3 - V_1}{3} = 0
+	\end{gather*}
+	
+	\begin{gather*}
+		\begin{cases}
+			\frac{5}{6}V_1 - \frac{1}{2}V_2 - \frac{1}{3}V_3 = 10 \vspace{0.25cm}\\
+			-\frac{1}{2}V_1 + \frac{19}{20}V_2 - \frac{1}{4}V_3 = 0 \vspace{0.25cm} \\
+			-\frac{1}{3}V_1 -\frac{1}{4}V_2 + \frac{3}{4}V_3 = 0
+		\end{cases}
+	\end{gather*}
+در ادامه جواب را می‌توانید با استفاده از یکی از روش‌های حل دستگاه‌ها بدست آورید من از سایت محاسبه آنلاین برای بدست آوردن جواب استفاده کردم، راست و دروغ آن گردن خودشان.
+\begin{gather*}
+	\begin{cases}
+		V_1 = 39.328 \\
+		V_2 = 27.731 \\
+		V_3 = 26.723
+	\end{cases}
+\end{gather*}
+\end{solu}
+
+
+\begin{remark}
+	هر گاه میان دو گره اصلی یک منبع ولتاژ(مستقل یا وابسته) قرار داشته باشد ترکیب این دوگره و منبع به صورت یک گره در نظر گرفته می‌شود و به آن ابرگره می‌گوییم.
+\end{remark}
+
+\begin{example}
+	ولتاژ گره‌ها را محاسبه کنید.
+	\begin{center}
+		\begin{circuitikz}
+			\draw (-3,2) to[american voltage source] (-3,0);
+			\draw (-1,0) to[R, l=$4\Omega$, i<=$i_x$] (-1,2);
+			\draw (1,0) to[R, l=$2\Omega$] (1,2);
+			\draw (3,0) to[american current source, l=$2A$] (3,2);
+			\draw (-3,2) to[R,l=$1\Omega$] (-1,2);
+			\draw (1,2) to[american controlled voltage source,l_=$3i_x$] (-1,2);
+			\draw (1,2) to[short] (3,2);
+			\draw (-3,0) to[short] (3,0);
+		\end{circuitikz}
+	\end{center}
+\end{example}
+
+\begin{solu}
+	\ \\
+	\begin{center}
+		\begin{circuitikz}
+			\draw (-3,2) to[american voltage source,*-] (-3,0) node[red,yshift=2.25cm]{1};
+			\draw (-1,0) to[R, l=$4\Omega$, i<=$i_x$] (-1,2);
+			\draw (1,0) to[R, l=$2\Omega$] (1,2);
+			\draw (3,0) to[american current source, l=$2A$] (3,2);
+			\draw (-3,2) to[R,l=$1\Omega$,-*] (-1,2) node[red,yshift=0.25cm]{2};
+			\draw (1,2) to[american controlled voltage source,l_=$3i_x$] (-1,2);
+			\draw (0,0) node[cground]{\textcolor{red}{4}} (0,-1);
+			\draw (3,2) to[short,-*] (1,2) node[red,yshift=0.25cm]{3};
+			\draw (-3,0) to[short] (3,0);
+		\end{circuitikz}
+	\end{center}
+	\begin{gather*}
+		\begin{cases}
+			V_3 - V_2 = 3i_x = \frac{3}{4} V_2 \vspace{0.25cm}\\
+			i_x = \frac{V_2}{4} \vspace{0.25cm} \\
+			\frac{V_2 - V_1}{1} + \frac{V_2}{4} + \frac{V_3}{2} - 2 = 0
+		\end{cases}
+	\end{gather*}
+		\begin{gather*}
+		\begin{cases}
+			-\frac{7}{4} V_2 + V_3 = 0\vspace{0.25cm}\\
+			\frac{5}{4} V_2 +\frac{1}{2} V_3 = 6
+		\end{cases}
+	\end{gather*}
+	\begin{gather*}
+		\begin{cases}
+			V_2 = 2.82\vspace{0.25cm}\\
+			V_3 = 4.94
+		\end{cases}
+	\end{gather*}
+\end{solu}
+
+\begin{remark}
+	علامت‌ها در تحلیل گره:
+	\begin{center}
+		\begin{circuitikz}
+			\draw (-2,0) to[R,l=$R$,*-*] (2,0) node[xshift=-4cm,yshift=0.25cm]{$V_2$} node[yshift=0.25cm]{$V_3$};
+			\draw[->] (0,-1) -- (1,-1) node[yshift=-0.5cm,xshift=-0.5cm]{$\frac{V_2-V_3}{R}$};
+			\draw[->] (1,1) -- (0,1) node[yshift=0.5cm,xshift=0.5cm]{$\frac{V_3-V_2}{R}$};
+		\end{circuitikz}
+	\end{center}
+\end{remark}
+
+\subsection{تحلیل حلقه(خانه‌ای)}
+هدف: بدست آوردن جریان شاخه‌ها(حلقه‌ها)
+\begin{description}
+	\item[گام اول] 
+	برای هر حلقه‌ی ساده‌ی مدار یک جریان حلقه مشخص می‌کنیم.
+	\item[گام دوم] 
+	با نوشتن KVL در حلقه‌های ساده یک دستگاه چندمعادله چند مجهول درست خواهد شد.
+	\item[گام سوم] 
+	حل این دستگاه، مجاسبه جریان حلقه‌ها یا شاخه‌ها خواهد بود.
+\end{description}
+
+\begin{example}
+	جریان حلقه‌ها را بدست آورید.
+	
+	\begin{center}
+		\begin{circuitikz}
+			\draw (-3,0) to[R,l=$4\Omega$] (3,0);
+			\draw (-3,-1) to[R,l=$1\Omega$] (0,-1);
+			\draw (0,-1) to[R,l=$2\Omega$] (3,-1);
+			\draw (0,-4) to[american voltage source,l=$5V$] (0,-1);
+			\draw (-3,-1) to[american voltage source,l_=$10V$] (-3,-4);
+			\draw (3,-1) to[short] (3,-4);
+			\draw (0,-4) to[R, l=$3\Omega$] (3,-4);
+			
+			\draw (-3,0) to[short] (-3,-1);
+			\draw (3,0) to[short] (3,-1);
+			\draw (-3,-4) -- (0,-4);
+		\end{circuitikz}
+	\end{center}
+\end{example}
+
+
+\begin{solu}
+	\begin{description}
+		\item[گام اول] 
+		تعیین جریان برای حلقه‌های ساده مدار
+		
+		\begin{center}
+			\begin{circuitikz}
+				\draw (-3,0.5) to[R,l=$4\Omega$] (3,0.5);
+				\draw (-3,-1) to[R,l=$1\Omega$] (0,-1);
+				\draw (0,-1) to[R,l=$2\Omega$] (3,-1);
+				\draw (0,-4) to[american voltage source,l=$5V$] (0,-1);
+				\draw (-3,-1) to[american voltage source,l_=$10V$] (-3,-4);
+				\draw (3,-1) to[short] (3,-4);
+				\draw (0,-4) to[R, l=$3\Omega$] (3,-4);
+				
+				
+				\draw (-3,0.5) to[short] (-3,-1);
+				\draw (3,0.5) to[short] (3,-1);
+				\draw (-3,-4) -- (0,-4);
+				\draw[<-,red] (0.25,0) arc  (30:330:0.5) node[xshift=-0.5cm,yshift=0.25cm]{$I_3$};
+				\draw[<-,red] (-1.25,-2.25) arc  (30:330:0.5) node[xshift=-0.5cm,yshift=0.25cm]{$I_1$};
+				\draw[<-,red] (2,-2.25) arc  (30:330:0.5) node[xshift=-0.5cm,yshift=0.25cm]{$I_2$};
+			\end{circuitikz}
+		\end{center}
+		
+		
+		
+		
+		
+		\item[گام دوم] 
+		نوشتن KVL در حلقه‌های ساده
+		
+		\begin{minipage}{0.5\textwidth}
+			\begin{gather*}
+				\Rightarrow
+				\begin{cases}
+					I_1 - I_3 = 15\\
+					5I_2 - 2I_3 = -5 \\
+					-I_1-2I_2 + 7I_3 = 0
+				\end{cases}
+			\end{gather*}
+		\end{minipage}
+		\begin{minipage}{0.5\textwidth}
+			\begin{gather*}
+				\begin{cases}
+					\textcircled{1} \Rightarrow 1(I_1 - I_3) -5-10 = 0 \\
+					\textcircled{2} \Rightarrow 2(I_2-I_3) + 3I_2 + 5 = 0 \\
+					\textcircled{3} \Rightarrow 4(I_3) + 2(I_3 - I_2) + 1(I_3 - I_1) = 0
+				\end{cases}
+			\end{gather*}
+		\end{minipage}
+		
+		
+		
+		
+		\item[گام سوم] 
+		حل این دستگاه، مجاسبه جریان حلقه‌ها یا شاخه‌ها خواهد بود.
+		
+		\begin{gather*}
+			\begin{cases}
+				I_1 = \frac{35}{2} A \\
+				I_2 = 0 \\
+				I_3 = \frac{5}{2} A
+			\end{cases}
+		\end{gather*}
+	\end{description}
+\end{solu}
+
+
+\begin{example}
+	جریان حلقه‌ها را بدست آورید.
+	
+	\begin{center}
+		\begin{circuitikz}
+			\draw (-3,0) to[R,l=$1\Omega$] (3,0);
+			\draw (-3,-1) to[R,l=$3\Omega$] (0,-1);
+			\draw (0,-1) to[R,l=$4\Omega$] (3,-1);
+			\draw (0,-1) to[R,l=$2\Omega$] (0,-4);
+			\draw (-3,-1) to[american voltage source,l_=$6V$] (-3,-4);
+			\draw (3,-1) to[american controlled voltage source,l=$3i_x$] (3,-4);
+			
+			
+			\draw (-3,0) to[short] (-3,-1);
+			\draw (3,0) to[short] (3,-1);
+			\draw (-3,-4) -- (3,-4);
+		\end{circuitikz}
+	\end{center}
+\end{example}
+
+
+\begin{solu}
+	\begin{description}
+		\item[گام اول] 
+		تعیین جریان برای حلقه‌های ساده مدار
+		
+			\begin{center}
+			\begin{circuitikz}
+				\draw (-3,0.75) to[R,l=$1\Omega$] (3,0.75);
+				\draw (-3,-1) to[R,l=$3\Omega$] (0,-1);
+				\draw (0,-1) to[R,l=$4\Omega$] (3,-1);
+				\draw (0,-1) to[R,l=$2\Omega$] (0,-4);
+				\draw (-3,-1) to[american voltage source,l_=$6V$] (-3,-4);
+				\draw (3,-1) to[american controlled voltage source,l=$3i_x$] (3,-4);
+				
+				
+				\draw (-3,0.75) to[short] (-3,-1);
+				\draw (3,0.75) to[short] (3,-1);
+				\draw (-3,-4) -- (3,-4);
+				\draw[<-,red] (0.25,0) arc  (30:330:0.5) node[xshift=-0.5cm,yshift=0.25cm]{$I_3$};
+				\draw[<-,red] (-1,-2.25) arc  (30:330:0.5) node[xshift=-0.5cm,yshift=0.25cm]{$I_1$};
+				\draw[<-,red] (2,-2.25) arc  (30:330:0.5) node[xshift=-0.5cm,yshift=0.25cm]{$I_2$};
+			\end{circuitikz}
+		\end{center}
+		
+		
+		
+		
+		
+		\item[گام دوم] 
+		نوشتن KVL در حلقه‌های ساده
+		
+				\begin{minipage}{0.5\textwidth}
+			\begin{gather*}
+				\Rightarrow
+				\begin{cases}
+					5I_1 -2I_2 -3I_3 = 6 \\
+					-2I_1 + 6I_2 - I_3 = 0 \\
+					-3I_1 + 4I_2 + 8I_3 = 0
+				\end{cases}
+			\end{gather*}
+		\end{minipage}
+	\begin{minipage}{0.5\textwidth}
+			\begin{gather*}
+			\begin{cases}
+				\textcircled{1} \Rightarrow 3(I_1 - I_3) + 2(I_1 - I_2) - 6 = 0 \\
+				\textcircled{2} \Rightarrow 4(I_2-I_3) + 3i_x + 2(I_2 - I_1) = 0 \\
+				\textcircled{3} \Rightarrow 1(I_3) + 4(I_3 - I_2) + 3(I_3 - I_1) = 0
+			\end{cases}
+		\end{gather*}
+	\end{minipage}
+
+
+
+
+		\item[گام سوم] 
+		حل این دستگاه، مجاسبه جریان حلقه‌ها یا شاخه‌ها خواهد بود.
+		
+			\begin{gather*}
+			\begin{cases}
+				I_1 = 1.625 A \\
+				I_2 = 0.594 A \\
+				I_3 = 0.313 A
+			\end{cases}
+		\end{gather*}
+	\end{description}
+\end{solu}
+
+\subsection{اصل برهم نهی(جمع آثار)}
+
+هرگاه یک سیستم خطی با چند منبع مستقل(جریان یا ولتاژ) تعریف شود، پاسخ کامل را می‌توان مجموع تک تک منابع هنگامی که به تنهایی عمل می‌کنند دانست. برای بدست آوردن اثر یک منبع تنها، باید سایر منابع غیرفعال شوند.
+
+\begin{remark}
+	سیستم خطی: سیستمی که فقط مقاومت و منبع مستقل باشد.
+\end{remark}
+
+
+\begin{itemize}
+	\item
+	\textbf{غیرفعال کردن منبع ولتاژ}
+	
+	یعنی منبع ولتاژ را برمیداریم و به جای آن یک سیم می گذاریم.(اتصال کوتاه)
+	
+	\item
+	\textbf{غیرفعال کردن منبع جریان}
+	
+	یعنی منبع را از مدار برداشته و جای آن را خالی می‌گذاریم.(اصطلاحاً مدار باز)
+\end{itemize}
+
+\begin{example}
+	مقدار 
+	$i_x$
+	را با استفاده از قانون جمع آثار بدست آورید.
+	
+	\begin{center}
+		\begin{circuitikz}
+			\draw (-4.5, 3) to[american voltage source, l_=$4V$] (-4.5, 0);
+			\draw (-1.5, 3) to[R, l_=$4\Omega$] (-1.5, 0);
+			\draw (1.5, 3) to[R, l_=$8\Omega$] (1.5, 0);
+			\draw (4.5, 0) to[american current source, l_=$2A$] (4.5, 3);
+			
+			\draw (-4.5, 3) to[R, l=$1\Omega$] (-1.5, 3);
+			\draw (-1.5, 3) to[R, l=$2\Omega$] (1.5, 3);
+			
+			\draw (-4.5, 0) -- (4.5,0);
+			\draw (1.5, 3) to[short] (4.5, 3);
+		\end{circuitikz}
+	\end{center}
+	
+\end{example}
+
+
+\begin{solu}
+	\begin{description}
+		\item[گام اول] حذف منبع ولتاژ مستقل
+		
+	\begin{center}	
+		\begin{circuitikz}
+			\draw (-4.5, 3) to[short] (-4.5, 0);
+			\draw (-1.5, 3) to[R, l_=$4\Omega$, i = $i_x$] (-1.5, 0);
+			\draw (1.5, 3) to[R, l_=$8\Omega$] (1.5, 0);
+			\draw (4.5, 0) to[american current source, l_=$2A$] (4.5, 3);
+			
+			\draw (-4.5, 3) to[R, l=$1\Omega$] (-1.5, 3) node[yshift=0.25cm,red]{1};
+			\draw (-1.5, 3) to[R, l=$2\Omega$,*-*] (1.5, 3) node[yshift=0.25cm,red]{2};
+			
+			\draw (0,0) to[short,*-] (0,-0.25) node[cground,yshift=0.25cm,red]{3};
+			
+			
+			\draw (-4.5, 0) -- (4.5,0);
+			\draw (1.5, 3) to[short] (4.5, 3);
+		\end{circuitikz}
+	\end{center}
+		
+		\begin{remark}
+			اگر در مدار همه منابع ولتاژ بود بهتر است که از روش تحلیل \textbf{حلقه }استفاده کنید. اگر در مدار همه منابع جریان بود بهتر است که از روش تحلیل \textbf{گره} استفاده کنید. اما اگر هر دوی آنها بود از اصل برهم نهی استفاده می‌کنیم. (هم منبع جریان و هم منبع ولتاژ فقط وابسته)
+		\end{remark}
+	
+
+	\begin{minipage}{0.5\textwidth}
+		\begin{gather*}
+			\Rightarrow
+			\begin{cases}
+				\textcircled{1} \Rightarrow -\frac{1}{2}V_2 + \frac{7}{4}V_1  = 0 \\
+				\textcircled{2} \Rightarrow \frac{5}{8}V_2 - \frac{1}{2}V_1 = 2
+			\end{cases}
+		\end{gather*}
+	\end{minipage}
+	\begin{minipage}{0.5\textwidth}
+			\begin{gather*}
+			\begin{cases}
+				\textcircled{1} \Rightarrow \frac{V_1}{1} + \frac{V_1}{4} + \frac{V_1 - V_2}{2} = 0 \\
+				\textcircled{2} \Rightarrow \frac{V_2 -  V_1}{2} + \frac{V_2}{8} - 2 = 0
+			\end{cases}
+		\end{gather*}
+	\end{minipage}
+		\begin{gather*}
+			\Rightarrow
+			\begin{cases}
+				V_1 = 1.18 V \\
+				V_2 = 4.15 V
+			\end{cases}
+		\end{gather*}
+	
+	\item[گام دوم] حذف منبع جریان مستقل
+	
+		\begin{center}
+		\begin{circuitikz}
+			\draw (-4.5, 3) to[american voltage source, l_=$4V$] (-4.5, 0);
+			\draw (-1.5, 3) to[R, l_=$4\Omega$, i=$i_{x2}$] (-1.5, 0);
+			\draw (1.5, 3) to[R, l_=$8\Omega$] (1.5, 0);
+			
+			
+			\draw (-4.5, 3) to[R, l=$1\Omega$] (-1.5, 3);
+			\draw (-1.5, 3) to[R, l=$2\Omega$] (1.5, 3);
+			
+			\draw (-4.5, 0) to[short,-*] (4.5,0);
+			\draw (1.5, 3) to[short,-*] (4.5, 3);
+			
+			\draw[<-,red] (-2.65,1.75) arc  (30:330:0.5) node[xshift=-0.5cm,yshift=0.25cm]{$I_1$};
+			\draw[<-,red] (0.5,1.75) arc  (30:330:0.5) node[xshift=-0.5cm,yshift=0.25cm]{$I_2$};
+		\end{circuitikz}
+	\end{center}
+	
+	
+	\begin{minipage}{0.5\textwidth}
+		\begin{gather*}
+			\Rightarrow
+			\begin{cases}
+				5I_1  - 4I_2 = 4 \\
+				 - 4I_1 +14I_2 = 0
+			\end{cases}
+		\end{gather*}
+	\end{minipage}
+	\begin{minipage}{0.5\textwidth}
+		\begin{gather*}
+			\begin{cases}
+				1(I_1) + 4(I_1 - I_2) - 4 = 0 \\
+				2I_2 + 8I_2 + 4(I_2 - I_1) = 0
+			\end{cases}
+		\end{gather*}
+	\end{minipage}
+	
+	\begin{gather*}
+		\Rightarrow
+		\begin{cases}
+			I_1= 1.037 \\
+			I_2 = 0.296
+		\end{cases}
+	    \Rightarrow	i_{x2} = I_1 - I_2 = 0.741 \\
+		i_x = i_{x1} + i_{x2} = 0.29 + 0.741 = 1.03A
+	\end{gather*}
+	\end{description}
+\end{solu}
+
+\subsection{تبدیل منابع}
+
+قابلیت تعویض منابع ولتاژ و جریان با همدیگر بدون اثرگذاری روی بقیه مدار.
+
+\begin{center}
+	\begin{minipage}{0.3\textwidth}
+		\begin{center}
+			\begin{circuitikz}
+				\draw (0,2) to[american voltage source, l_=$V_s$] (0,0);
+				\draw (0,2) to[R, l=$R_s$,-*] (3,2) node[xshift=0.25cm]{a};
+				\draw (0,0) to[short,-*] (3,0) node[xshift=0.25cm]{b};
+			\end{circuitikz}
+		\end{center}
+	\end{minipage}
+	\begin{minipage}{0.3\textwidth}
+		\begin{center}
+			$\Leftrightarrow$
+		\end{center}
+	\end{minipage}
+	\begin{minipage}{0.3\textwidth}
+		\begin{center}
+			\begin{circuitikz}
+				\draw (0,0) to[american current source, l=$i_s$] (0,2);
+				\draw (2,2) to[R, l=$R_p$] (2,0);
+				\draw (0,2) to[short,-*] (3,2) node[xshift=0.25cm]{a};
+				\draw (0,0) to[short,-*] (3,0) node[xshift=0.25cm]{b};
+			\end{circuitikz}
+		\end{center}
+	\end{minipage}
+\end{center}
+\begin{gather*}
+	\begin{cases}
+		R_s = R_p \\
+		V_s = R_pi_s
+	\end{cases}
+\end{gather*}
+\begin{remark}
+	تبدیل منابع را می‌توان هم برای منابع مستقل و هم منابع وابسته استفاده کرد.
+\end{remark}
+
+\begin{example}
+	با استفاده از تبدیل منابع مقدار 
+	$I_0$
+	را بدست آورید.
+	
+		\begin{center}
+		\begin{circuitikz}
+			\draw (-4.5, 3) to[american voltage source, l_=$6V$] (-4.5, 0);
+			\draw (-1.5, 3) to[R, l_=$6\Omega$] (-1.5, 0);
+			\draw (1.5, 0) to[american current source, l_=$2A$] (1.5, 3);
+			\draw (4.5, 0) to[R, l_=$2\Omega$] (4.5, 3);
+			
+			\draw (-4.5, 3) to[R, l=$3\Omega$] (-1.5, 3);
+			\draw (-1.5, 3) to[R, l=$2\Omega$] (1.5, 3);
+			
+			\draw (-4.5, 0) -- (4.5,0);
+			\draw (1.5, 3) to[short, i = $I_0$] (4.5, 3);
+		\end{circuitikz}
+	\end{center}
+\end{example}
+
+
+\begin{solu}
+	\ \\
+		\begin{center}
+		\begin{circuitikz}
+			\draw (-4.5, 3) to[american voltage source, l_=$6V$] (-4.5, 0);
+			\draw (-1.5, 3) to[R, l_=$6\Omega$] (-1.5, 0);
+			\draw (1.5, 0) to[american current source, l_=$2A$] (1.5, 3);
+			\draw (4.5, 0) to[R, l_=$2\Omega$] (4.5, 3);
+			
+			\draw (-4.5, 3) to[R, l=$3\Omega$] (-1.5, 3);
+			\draw (-1.5, 3) to[R, l=$2\Omega$] (1.5, 3);
+			
+			\draw (-4.5, 0) -- (4.5,0);
+			\draw (1.5, 3) to[short, i = $I_0$] (4.5, 3);
+			\draw[red] (-5,1) arc (250:370:2);
+		\end{circuitikz}
+	\end{center}
+	\begin{gather*}
+		\Downarrow \text{\rl{با استفاده از تبدیل منابع}}
+	\end{gather*}
+	\begin{center}
+		\begin{circuitikz}
+			\draw (-4.5, 0) to[american current source, l=$2A$] (-4.5, 3);
+			\draw (-2.5, 3) to[R, l_=$3\Omega$] (-2.5, 0);
+			\draw (-1, 3) to[R, l_=$6\Omega$] (-1, 0);
+			\draw (1.5, 0) to[american current source, l_=$2A$] (1.5, 3);
+			\draw (4.5, 0) to[R, l_=$2\Omega$] (4.5, 3);
+			
+			\draw (-4.5, 3) to[short] (-1.5, 3);
+			\draw (-1.5, 3) to[R, l=$2\Omega$] (1.5, 3);
+			
+			\draw (-4.5, 0) -- (4.5,0);
+			\draw (1.5, 3) to[short, i = $I_0$] (4.5, 3);
+		\end{circuitikz}
+	\end{center}
+	\begin{gather*}
+		\Downarrow \text{\rl{دو مقاومت ۳ و ۶ اهمی موازی هستند.}}
+	\end{gather*}
+	\begin{center}
+		\begin{circuitikz}
+			\draw (-4.5, 0) to[american current source, l=$2A$] (-4.5, 3);
+			\draw (-1.5, 3) to[R, l_=$2\Omega$] (-1.5, 0);
+			\draw (1.5, 0) to[american current source, l_=$2A$] (1.5, 3);
+			\draw (4.5, 0) to[R, l_=$2\Omega$] (4.5, 3);
+			
+			\draw (-4.5, 3) to[short] (-1.5, 3);
+			\draw (-1.5, 3) to[R, l=$2\Omega$] (1.5, 3);
+			
+			\draw (-4.5, 0) -- (4.5,0);
+			\draw (1.5, 3) to[short, i = $I_0$] (4.5, 3);
+		\end{circuitikz}
+	\end{center}
+	\begin{gather*}
+		\Downarrow \text{\rl{تبدیل منابع}}
+	\end{gather*}
+	\begin{center}
+		\begin{circuitikz}
+			\draw (-4.5, 3) to[american voltage source, l_=$4V$] (-4.5, 0);
+			\draw (1.5, 0) to[american current source, l_=$2A$] (1.5, 3);
+			\draw (4.5, 0) to[R, l_=$2\Omega$] (4.5, 3);
+			
+			\draw (-4.5, 3) to[R,l=$2\Omega$] (-1.5, 3);
+			\draw (-1.5, 3) to[R, l=$2\Omega$] (1.5, 3);
+			
+			\draw (-4.5, 0) -- (4.5,0);
+			\draw (1.5, 3) to[short, i = $I_0$] (4.5, 3);
+		\end{circuitikz}
+	\end{center}
+	\begin{gather*}
+		\Downarrow \text{\rl{دو مقاومت دو اهمی سری هستند. باهم جمع و سپس تبدیل منابع}}
+	\end{gather*}
+		\begin{center}
+		\begin{circuitikz}
+			\draw (-4.5, 0) to[american current source, l=$1A$] (-4.5, 3);
+			\draw (1.5, 0) to[american current source, l_=$2A$] (1.5, 3);
+			\draw (4.5, 0) to[R, l_=$2\Omega$] (4.5, 3);
+			\draw (-1.5, 0) to[R, l_=$4\Omega$] (-1.5, 3);
+			\draw (-4.5, 3) to[short] (-1.5, 3);
+			\draw (-1.5, 3) to[short] (1.5, 3);
+			
+			\draw (-4.5, 0) -- (4.5,0);
+			\draw (1.5, 3) to[short, i = $I_0$] (4.5, 3);
+		\end{circuitikz}
+	\end{center}
+	\begin{remark}
+		اگر منابع جریان هم جهت و موازی باشند(مانند این شکل) می‌توان آنها را با یکدیگر جمع کرد.
+	\end{remark}
+	\begin{center}
+		\begin{circuitikz}
+			\draw (-4.5, 0) to[american current source, l=$3A$] (-4.5, 3);
+			\draw (4.5, 0) to[R, l_=$2\Omega$] (4.5, 3);
+			\draw (-1.5, 0) to[R, l_=$4\Omega$] (-1.5, 3);
+			\draw (-4.5, 3) to[short] (-1.5, 3);
+			\draw (-1.5, 3) to[short] (1.5, 3);
+			
+			\draw (-4.5, 0) -- (4.5,0);
+			\draw (1.5, 3) to[short, i = $I_0$] (4.5, 3);
+		\end{circuitikz}
+	\end{center}
+حال با استفاده از فرمول تقسیم جریان می‌توان جریان مورد نظر را محاسبه کرد:
+	\begin{gather*}
+		I_0 = \frac{4}{2+4} \times 3 = 2A
+	\end{gather*}
+\end{solu}
+
+\subsection{مدارهای هم ارز تونن و نورتن}
+
+\textbf{هدف: }قرار دادن یک مدار ساده به جای قسمت بزرگی از مدار
+
+برای نقطه‌ای از مدار که می‌خواهیم معادل تونن یا نورتن را بگذاریم، ولتاژ مدار باز
+$(V_{th})$
+،جریان نورتن
+$(I_{sc})$
+[جریان اتصال کوتاه] و مقاومت معادل تونن
+$(R_{th}=\frac{V_{th}}{I_{sc}})$
+را محاسبه می‌کنیم.
+
+\begin{remark}
+	\ \\
+	\begin{itemize}
+		\item 
+		جریان همیشه در مسیر بسته برقرار است.
+		\item
+		وقتی در مسیر بسته‌ای منبع جریان باشد، تعیین کننده جریان آن منبع است.
+	\end{itemize}
+\end{remark}
+
+\subsubsection*{ولتاژ مدار باز(ولتاژ تونن)}
+المانی از مدار را که می‌خواهیم از دوسر آن مدار معادل را بدست آوریم، مدار باز می‌کنیم. مدار را با روش‌های تحلیلی که آموختیم، تحلیل کرده و ولتاژ دو سر مدار باز شده را بدست می‌آوریم.
+
+\subsubsection*{جریان اتصال کوتاه(جریان نورتن)}
+المانی از مدار را که می‌خواهیم از دو سر آن مدار معادل را بدست آوریم، اتصال کوتاه می‌کنیم. مدار را با روش‌های تحلیلی که پیش از این آموختیم، تحلیل کرده و  جریان گذرنده از این اتصال کوتاه را محاسبه می‌کنیم.
+
+\begin{example}
+	با استفاده از روش معادل سازی تونن و نورتن، ولتاژ 
+	$V_0$
+	را بدست آورید.
+	
+	\begin{center}
+		\begin{circuitikz}
+			\draw (-2,2) to[american voltage source, l_=$9V$] (-2,0);
+			\draw (0,2) to[american current source, l_=$1A$] (0,0);
+			\draw (2,0) to[R, l=$2\Omega$] (2,2) node[xshift = 0.5cm,yshift=-1cm,red]{$V_0$}
+			node[xshift = 0.5cm,yshift=-0.5cm,red]{$+$} node[xshift = 0.5cm,yshift=-1.5cm,red]{$-$};
+			\draw (0,2) to[R, l=$3\Omega$] (2,2);
+			\draw (-2,2) to[R, l=$3\Omega$] (0,2);
+			\draw (-2,0) to[short] (2,0);
+		\end{circuitikz}
+	\end{center}
+\end{example}
+
+\begin{solu}
+	\begin{description}
+		\item[گام اول] محاسبه ولتاژ تونن:
+		
+			\begin{center}
+			\begin{circuitikz}
+				\draw (-3,2) to[american voltage source, l_=$9V$] (-3,0);
+					\draw (0,2) to[american current source, l_=$1A$] (0,0);
+				\node[xshift = 2.25cm,yshift=1cm,red]{$V_0$}
+				node[xshift = 2.25cm,yshift=1.75cm,red]{$+$} node[xshift = 2.25cm,yshift=0.25cm,red]{$-$};
+				\draw (0,2) to[R, l=$3\Omega$,-*] (2,2);
+				\draw (-3,2) to[R, l=$3\Omega$] (0,2);
+				\draw (-3,0) to[short,-*] (2,0);
+				\draw[->,blue] (-2,1) arc(150:-60:0.35);
+			\end{circuitikz}
+		\end{center}
+		\begin{gather*}
+			3\times 1 + V_{th} -9 = 0 \Rightarrow V_{th} = 6v
+		\end{gather*}
+		\item[گام دوم:] محاسبه جریان نورتن
+			\begin{center}
+			\begin{circuitikz}
+				\draw (-2,2) to[american voltage source, l_=$9V$,*-] (-2,0) node[red,yshift=2.25cm]{9};
+				\draw (0,2) to[american current source, l_=$1A$,-*] (0,0);
+				\draw (2,0) to[short] (2,2) node[xshift = 0.5cm,yshift=-1cm,red]{$\downarrow I_{sc}$};
+				\draw (0,2) to[R, l=$3\Omega$] (2,2);
+				\draw (-2,2) to[R, l=$3\Omega$,-*] (0,2) node[red,yshift=0.25cm]{$V_1$};
+				\draw (-2,0) to[short] (2,0);
+				\draw (0,0) node[cground]{}(0,-1);	
+			\end{circuitikz}
+		\end{center}
+		\begin{gather*}
+			\frac{V_1-9}{3} + \frac{V_1}{3} + 1 = 0 \Rightarrow V_1 = 3v \vspace{0.5cm} \\
+			I_{sc} = \frac{V_1}{3} = \frac{3}{3}= 1A
+		\end{gather*}
+	\item[گام سوم:] 
+	\begin{gather*}
+		R_{th} = \frac{V_{th}}{I_{sc}} = \frac{6}{1} = 6\Omega
+	\end{gather*}
+	\begin{center}
+		\begin{circuitikz}
+			\draw(0,2) to[american voltage source, l_=$6v$] (0,0);
+			\draw(2,0) to[R, l=$2\Omega$] (2,2) node[red,xshift=0.5cm,yshift=-1cm]{$V_0$}
+			node[red,xshift=0.5cm,yshift=-0.5cm]{$+$} node[red,xshift=0.5cm,yshift=-1.5cm]{$-$};
+			\draw(0,2) to[R, l=$6\Omega$] (2,2);
+			\draw(0,0) to[short] (2,0);
+		\end{circuitikz}
+	\end{center}
+حال از فرمول تقسیم ولتاژ استفاده می‌کنیم:
+	\begin{gather*}
+		V_0 = \frac{2}{2+6} \times 6 = 1.5v
+	\end{gather*}
+	\end{description}
+\end{solu}
+
+
+
