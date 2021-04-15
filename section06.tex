@@ -1,0 +1,141 @@
+\section{تجزیه و تحلیل حالت ماندگاری سینوسی}
+\subsection*{مقدمات}
+\begin{gather*}
+    V(t) = V_m\ Sin(\omega t) \\
+    t \rightarrow \text{\rl{زمان بر حسب ثانیه}}\\
+    V_m \rightarrow \text{\rl{دامنه ولتاژ}} \\
+    \omega \rightarrow \text{\rl{فرکانس زاویه‌ای}}
+    \begin{cases}
+        \omega = 2\pi f = \frac{2\pi}{T} \\
+        f \rightarrow \text{\rl{فرکانس یا بسامد}} - \text{\rl{واحد آن هرتز}}\\
+        T \rightarrow \text{\rl{دوره‌ی تناوب}} - \text{\rl{واحد آن ثانیه}}
+    \end{cases}
+\end{gather*}
+
+\subsection*{توصیف اعداد مختلط}
+
+\begin{center}
+    \begin{minipage}{0.4\textwidth}
+        \begin{gather*}
+            z = \sqrt{x^2+y^2} \\
+            \theta = tan^{-1}(\frac{y}{x})
+        \end{gather*}
+    \end{minipage}
+    \begin{minipage}{0.4\textwidth}
+        \begin{gather*}
+            \begin{cases}
+                z = x + jy \rightarrow \text{\rl{نمایش معمول}}\\
+                z = |z|e^{j\theta} \rightarrow \text{\rl{نمایش قطبی}}\\
+                z = |z|\measuredangle \theta \rightarrow \text{\rl{نمایش برداری}}
+            \end{cases}
+        \end{gather*}
+    \end{minipage}
+\end{center}
+
+\subsubsection*{جمع و تفریق اعداد مختلط}
+\begin{center}
+    \begin{minipage}{0.4\textwidth}
+        \begin{gather*}
+            z_1 \pm z_2 = (x_1\pm x_2) + j(y_1\pm y_2)
+        \end{gather*}
+    \end{minipage}
+    \begin{minipage}{0.4\textwidth}
+        \begin{gather*}
+            \begin{cases}
+                z_1 = x_1 + jy_1 \\
+                z_2 = x_2 + jy_2 
+            \end{cases}
+        \end{gather*}
+    \end{minipage}
+\end{center}
+
+\subsubsection*{ضرب اعداد مختلط}
+\begin{gather*}
+    z_1 . z_2 = (x_1 + jy_1) . (x_2 + jy_2) \\
+    = x_1x_2 - y_1y_2 +j(x_1y_2 + x_2y_1) \\
+    = r_1r_2 \measuredangle (\theta_1 + \theta_2)
+    \rightarrow
+    \begin{cases}
+        r_1 = \sqrt{x_1^2+y_1^2} \\
+        r_2 = \sqrt{x_2^2+y_2^2}\\
+        \theta_1 = tan^{-1}(\frac{y_1}{x_1}) \\
+        \theta_2 = tan^{-1}(\frac{y_2}{x_2})
+    \end{cases}
+\end{gather*}
+
+\subsubsection*{تقسیم اعداد مختلط}
+\begin{gather*}
+    \frac{z_1}{z_2} = \frac{x_1 + jy_1}{x_2 + jy_2} = 
+    \frac{r_1 \measuredangle \theta_1}{r_2 \measuredangle \theta_2}\\
+    = \frac{r_1}{r_2} \measuredangle (\theta_1 - \theta_2)
+    \rightarrow
+    \begin{cases}
+        r_1 = \sqrt{x_1^2+y_1^2} \\
+        r_2 = \sqrt{x_2^2+y_2^2}\\
+        \theta_1 = tan^{-1}(\frac{y_1}{x_1}) \\
+        \theta_2 = tan^{-1}(\frac{y_2}{x_2})
+    \end{cases}
+\end{gather*}
+
+\subsection*{نمایش در فرم فاز برداری}
+جریان‌ها و ولتاژهای 
+$cos$
+را برای ساده‌تر کردن تحلیل می‌توان به صورت زیر نوشت. دقت شود چنین نحوه‌ی نمایشی فقط در مورد توابع 
+$cos$
+است و اگر تابع 
+$sin$
+باشد باید ابتدا آن را به یک تابع 
+$cos$
+تبدیل کنید.
+
+\begin{gather*}
+    V(t) = I_m\ cos(\omega t + \phi) = I_m\measuredangle \phi
+\end{gather*}
+
+\begin{example}
+    جریان و ولتاژ زیر را به فرم فاز برداری نمایش دهید.
+
+    الف)
+    $i(t) = 10\ cos(377t+20^{\circ})$
+    
+    ب)
+    $V(t) = 20\ cos(377t+15^{\circ})$
+\end{example}
+
+\begin{solu}
+    الف:
+    \begin{gather*}
+        i(t) = 10\ cos(377t+20^{\circ}) = 10 \measuredangle 20^{\circ}
+    \end{gather*}
+    ب:
+    \begin{gather*}
+        V(t) = 20\ cos(377t+15^{\circ}) = 20 \measuredangle 15^{\circ} 
+    \end{gather*}
+\end{solu}
+
+\begin{example}
+    اگر 
+    $f=60\ Hz$
+    و نمایش فاز برداری ولتاژ به صورت 
+    $V = 25 \measuredangle 45^{\circ}  $
+    باشد. معادله ولتاژ را در حوزه زمانی بدست آورید.
+\end{example}
+
+\begin{solu}
+   \begin{center}
+    \begin{minipage}{0.4\textwidth}
+        \begin{gather*}
+            V(t) = 25\ cos(377t + 45^{\circ})
+        \end{gather*}
+    \end{minipage}
+    \begin{minipage}{0.4\textwidth}
+        \begin{gather*}
+            \begin{cases}
+                V_m = 25 \\
+                \omega = 2 \times 3.14 \times 60 = 377 \\
+                \phi = 45^{\circ}
+            \end{cases}
+        \end{gather*}
+    \end{minipage}
+   \end{center}
+\end{solu}
