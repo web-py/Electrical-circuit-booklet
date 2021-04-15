@@ -476,3 +476,253 @@ $\omega_0$
 		V(t) = k_1e^{-0.54t}+k_2e^{-7.46t} \\
 \end{gather*}
 \end{solu}
+
+\begin{example}
+	در مدار شکل زیر اگر 
+	$V_c(0) = 2V$
+	و
+	$i_L(0) = -2A$
+	باشد، مطلوب است مقدار 
+	$V(t)$
+	برای
+	$t>0$.
+
+	\begin{center}
+		\begin{circuitikz}
+			\draw (0,0) to[capacitor,l=$\frac{1}{4}F$] (0,2);
+			\draw (0,2) to[short] (2,2);
+			\draw (2,2) to[short] (4,2);
+			\draw (0,0) to[short] (4,0);
+			\draw (2,0) to[L,l=$1H$] (2,2);
+			\draw (4,0) to[R,l=$2\Omega$] (4,2) node[yshift=-0.25cm,xshift=0.75cm](){+} node[yshift=-1.75cm, xshift=0.75cm]{-}
+			node[yshift = -1cm, xshift=0.75cm]{$V(t)$};
+		\end{circuitikz}
+	\end{center}
+
+\end{example}
+
+\begin{solu}
+	اولین کار برای حل این تیپ سوالات بدست آوردن 
+	$\alpha, \omega$
+	است. بنابراین:
+	\begin{gather*}
+		\alpha = \frac{1}{2RC} = \frac{1}{2\times2\times\frac{1}{4}} = 1 \\
+		\omega_0 = \frac{1}{\sqrt{1\times\frac{1}{4}}} = 2
+	\end{gather*}
+	از آنجایی که 
+	$\alpha < \omega_0$
+	است پاسخ زیرمیراست. پس:
+	\begin{gather*}
+		V(t) = e^{-\alpha t}\Big(k_1 cos\omega_n t+ k_2sin \omega_n t\Big) \\
+		\omega_n = \sqrt{\omega_0^2 - \alpha^2} = \sqrt{4-1} = \sqrt{3}\\
+		\Rightarrow V(t) = e^{-\alpha t}\Big(k_1 cos\sqrt{3}t+ k_2sin \sqrt{3} t\Big) \\
+	\end{gather*}
+	حال باید مقادیر 
+	$k_1, k_2$
+	را محاسبه کنیم:
+	\begin{gather*}
+		V(0) = 1\Big(k_1 cos 0+ k_2 sin 0\Big) = k_1 = 2\\
+	\end{gather*}
+	و برای بدست آوردن 
+	$k_2$
+	مدار را در زمان صفر در نظر می‌گیریم یعنی به صورت زیر:
+	\begin{center}
+		\begin{circuitikz}
+			\draw (0,0) to[capacitor,l=$\frac{1}{4}F$] (0,2);
+			\draw (0,2) to[short, i<=$c\frac{dv}{dt}$] (2,2);
+			\draw (2,2) to[short,i=$\frac{V}{R}$] (4,2);
+			\draw (0,0) to[short] (4,0);
+			\draw (2,0) to[L,l=$1H$, i<=$-2A$] (2,2);
+			\draw (4,0) to[R,l=$2\Omega$] (4,2) node[yshift=-0.25cm,xshift=0.75cm](){+} node[yshift=-1.75cm, xshift=0.75cm]{-}
+			node[yshift = -1cm, xshift=0.75cm]{$V(t)$};
+		\end{circuitikz}
+	\end{center}
+	\begin{gather*}
+		\frac{dv}{dt} = -e^{-t}\Big(k_1 cos\sqrt{3}t+ k_2sin \sqrt{3}t\Big) 
+		+ e^{-t}\Big(-\sqrt{3}k_1 sin\sqrt{3}t+ \sqrt{3}k_2 cos \sqrt{3}t\Big) \\
+		i_c = C\frac{dv}{dt} = \frac{1}{4}\Big[ -1(2+0) + 1(0+\sqrt{3}k_2) \Big] = -\frac{1}{2} + \frac{\sqrt{3}}{4}k_2
+	\end{gather*}
+	با توجه به قانون KCL داریم:
+	\begin{gather*}
+		i_R + i_L + i_C = 0 \\
+		i_R = \frac{V}{R} = \frac{2}{2} = 1 \\
+		1 -2 -\frac{1}{2} + \frac{\sqrt{3}}{4}k_2 = 0 \rightarrow k_2 = 3.47 \\
+		\Rightarrow V(t) = e^{-t}\Big(2 cos\sqrt{3}t+ 3.47 sin \sqrt{3} t\Big) 
+	\end{gather*}
+\end{solu}
+\subsubsection*{پاسخ طبیعی مدار RLC سری:}
+همانطور که در شکل زیر هم مشاهده می‌کنید در این مدارها در هر سه المان یک جریان برقرار است.
+بنابراین در این مدارها به دنبال به دست آوردن \textit{جریان} هستیم.
+\begin{center}
+	\begin{circuitikz}
+		\draw (0,0) to[L,l_=$L$] (3,0)
+		node[yshift=0.5cm,xshift = -1cm]{-}
+		node[yshift = 0.5cm, xshift = -2cm]{+}
+		node[yshift = 0.5cm, xshift=-1.5cm]{$V_L$}
+		;
+		\draw (0,0) to[R,l=$R$, i<=$i$] (0,-3)
+		node[yshift = 1cm, xshift = -0.5cm]{+}
+		node[yshift = 2cm, xshift = -0.5cm]{-}
+		node[yshift = 1.5cm, xshift = -0.5cm]{$V_R$}
+		;
+		\draw (3,0) to[capacitor,l_=$C$] (3,-3)
+		node[yshift = 1cm, xshift = 0.75cm]{-}
+		node[yshift = 2cm, xshift = 0.75cm]{+}
+		node[yshift = 1.5cm, xshift = 0.75cm]{$V_C$}
+		;
+		\draw (0,-3) to[short] (3,-3);
+		\draw[<-,blue] (1.5,-1.5) arc (30:330:0.25);
+	\end{circuitikz}
+\end{center}
+فرض می‌کنیم که انرژی اولیه ذخیره شده در سلف 
+$I_0$
+و انرژی اولیه ذخیره شده در خازن هم 
+$V_0$
+باشد. از طرفی با توجه به جریان مشخص شده و قانون 
+KVL
+داریم:
+\begin{gather*}
+	V_L + V_C + V_R = 0 \Rightarrow L\frac{di}{dt} + \frac{1}{C}\int i\ dt + V_0 + Ri = 0 \\
+	L\frac{d^2i}{dt^2} + \frac{1}{C}i + R\frac{di}{dt} = 0 \\
+	\frac{d^2i}{dt^2} + \frac{R}{L}\frac{di}{dt} + \frac{1}{LC}i = 0 \\
+	\Rightarrow s^2 + \frac{R}{L}s + \frac{1}{LC} = 0 \\
+	\begin{cases}
+		s_1 = \frac{-R}{2L} + \sqrt{(\frac{R}{2L})^2-\frac{1}{LC}} \\
+		s_2 = \frac{-R}{2L} - \sqrt{(\frac{R}{2L})^2-\frac{1}{LC}}
+	\end{cases}
+	\rightarrow 
+	\begin{cases}
+		\alpha = \frac{R}{2L} \rightarrow \text{\rl{ضریب میرایی پاسخ طبیعی}}\\
+		\omega_0 = \frac{1}{\sqrt{LC}} \rightarrow \text{\rl{فرکانس تشدید}}
+	\end{cases}
+\end{gather*}
+به مانند قبل با توجه به 
+$\alpha, \omega_0$
+سه جواب متمایز خواهیم داشت. 
+\begin{description}
+	\item[$\alpha > \omega_0$:] 
+	در این حالت دو ریشه حقیقی و متمایز داریم و به آن پاسخ طبیعی فوق میرا گفته می‌شود. 
+	\begin{gather*}
+		i(t) = k_1e^{s_1t}+k_2e^{s_2t}
+	\end{gather*}
+
+	\item[$\alpha < \omega_0$:] 
+	در این حالت دو ریشه مختلط و مزدوج داریم و به آن پاسخ طبیعی زیرمیرا گفته می‌شود. 
+	\begin{gather*}
+		i(t) = e^{-\alpha t}\Big(k_1 cos\omega_n t+ k_2sin \omega_n t\Big)
+	\end{gather*}
+	\begin{remark}
+		به $\omega_n$ فرکانس تشدید طبیعی گفته می‌شود که از رابطه‌ی زیر محاسبه می‌شود:
+		\begin{gather*}
+			\omega_n = \sqrt{\omega_0^2 - \alpha^2}
+		\end{gather*}
+	\end{remark}
+
+	\item[$\alpha = \omega_0$:] 
+	در این حالت هر دو ریشه حقیقی و مساوی است و به آن پاسخ طبیعی میرای بحرانی گفته می‌شود.
+	\begin{gather*}
+		i(t) = k_1te^{-\alpha t} + k_2e^{-\alpha t}
+	\end{gather*}
+\end{description}
+
+\begin{example}
+	در شکل زیر اگر 
+	$R=1\Omega, L = 1H, C=\frac{1}{25} F, i_L(0) = 2A, V_C(0) = 2V$
+	مقدار 
+	$i(t)$
+	را برای 
+	$t>0$
+	بیابید.
+
+	\begin{center}
+		\begin{circuitikz}
+			\draw (0,0) to[L,l_=$L$] (3,0)
+			node[yshift=0.5cm,xshift = -1cm]{-}
+			node[yshift = 0.5cm, xshift = -2cm]{+}
+			node[yshift = 0.5cm, xshift=-1.5cm]{$V_L$}
+			;
+			\draw (0,0) to[R,l=$R$, i<=$i$] (0,-3)
+			node[yshift = 1cm, xshift = -0.5cm]{+}
+			node[yshift = 2cm, xshift = -0.5cm]{-}
+			node[yshift = 1.5cm, xshift = -0.5cm]{$V_R$}
+			;
+			\draw (3,0) to[capacitor,l_=$C$] (3,-3)
+			node[yshift = 1cm, xshift = 0.75cm]{-}
+			node[yshift = 2cm, xshift = 0.75cm]{+}
+			node[yshift = 1.5cm, xshift = 0.75cm]{$V_C$}
+			;
+			\draw (0,-3) to[short] (3,-3);
+		\end{circuitikz}
+	\end{center}
+\end{example}
+
+\begin{solu}
+	اولین گام برای حل مسائل 
+	RLC 
+	بدست آوردن مقادیر
+	$\alpha, \omega_0$
+	است. پس:
+	\begin{gather*}
+		\alpha = \frac{R}{2L} = \frac{6}{2\times1} = 3 \\
+		\omega_0 = \frac{1}{\sqrt{LC}} = \frac{1}{\sqrt{1\times\frac{1}{25}}} = 5
+	\end{gather*}
+	با توجه به اینکه
+	$\alpha < \omega_0$
+	است نوع پاسخ زیرمیراست بنابراین داریم:
+	\begin{gather*}
+		i(t) = e^{-\alpha t}\Big(k_1 cos\omega_n t+ k_2sin \omega_n t\Big) \\
+		\omega_n = \sqrt{\omega_0^2 - \alpha^2} = \sqrt{25-9} = 4 \\
+		i(0) = 2A \rightarrow 2 = k_1 \\
+		KVL \rightarrow V_R + V_L + V_C = 0 \rightarrow R\times i(0) + L\frac{di}{dt} + V_c(0) = 0 \\
+		\rightarrow k_2 = -2 \\
+		\Rightarrow i(t) = e^{-2t}\Big(2 cos4t - 2sin4t\Big) 
+	\end{gather*}
+\end{solu}
+
+\begin{example}
+	در مدار شکل زیر اگر
+	$V_c(0) = -6V, i_L(0) = 4A$
+	باشد،
+	$V_c(t)$
+	را در 
+	$t>0$
+	محاسبه نمایید.
+
+	\begin{center}
+		\begin{circuitikz}
+			\draw (0,2) to[american voltage source,l_=$10u(t)$] (0,0);
+			\draw (0,2) to[R,l=$6\Omega$] (3,2);
+			\draw (3,2) to[L,l=$1H$] (6,2);
+			\draw (6,2) to[capacitor,l_=$\frac{1}{25}F$] (6,0)
+			node[xshift=0.75cm, yshift=1.5cm]{+}
+			node[xshift=0.75cm, yshift=1cm]{$V_c$}
+			node[xshift=0.75cm, yshift=0.5cm]{-}
+			;
+			\draw (0,0) to[short] (6,0);
+		\end{circuitikz}
+	\end{center}
+\end{example}
+
+\begin{solu}
+	ابتدا مقادیر
+	$\alpha, \omega_0$
+	را محاسبه می‌کنیم:
+	\begin{gather*}
+		\begin{cases}
+			\alpha = \frac{R}{2L} = \frac{6}{2} = 3 \\
+			\omega_0 = \frac{1}{\sqrt{LC}} = \frac{1}{1\times\frac{1}{25}} = 5
+		\end{cases}
+	\end{gather*}
+	
+	با توجه به اینکه
+	$\alpha < \omega_0$
+	است نوع پاسخ زیرمیراست. از طرفی وقتی مدار منبع داشته باشد و مقدار آن تابع پله‌ای باشد، داریم:
+	\begin{gather*}
+		V_c(t) = 10 + e^{-3 t}\Big(k_1 cos4 t+ k_2sin 4 t\Big) \\
+		\omega_n = \sqrt{\omega_0^2 - \alpha^2} = \sqrt{25-9} = 4 \\
+		V_c(0) = -6 = 10 + k_1 \rightarrow k_1 = -16 \\
+		i(t) = C\frac{dv(t)}{dt} = \frac{1}{25}\Big( 0 + (-3e^{-3t})(k_1 cos4 t+ k_2sin 4 t)+(e^{-3t})(-4k_1sin4t + 4k_2 cos 4t) \Big) \\
+		\text{\rl{جریان مقاومت}} = \text{\rl{جریان خازن}}=\text{\rl{جریان سلف}} \\
+		i_L(0) = 4A = \frac{1}{25}\Bigl(-3(-16) + 4k_2\Bigr) \rightarrow k_2 = 13
+	\end{gather*}
+\end{solu}
