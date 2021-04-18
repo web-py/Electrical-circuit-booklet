@@ -139,3 +139,184 @@ $cos$
     \end{minipage}
    \end{center}
 \end{solu}
+
+\subsection{امپدانس و ادمیتانس}
+
+در مهندسی، تحلیل در دو فضا انجام می‌شود:
+
+\begin{itemize}
+	\item
+	فضای فرکانسی: فضای متغیر در واحد فرکانس
+	\item
+	فضای زمانی: فضای متغیر در واحد زمانی
+\end{itemize}
+
+با استفاده از نمایش در فرم فرکانس می‌توان با استفاده از مفهوم دیگری به نام امپدانس (یا ادمیتانس) به سلف و خازن به چشم یک مقاومت نگاه کرد. در این حالت از معادلات دیفرانسیلی خبری نیست. امپدانس را معمولاً با Z  و ادمیتانس را با Y نمایش می‌دهند. داریم که:
+\begin{gather*}
+	Z = \frac{1}{Y}
+\end{gather*}
+
+امپدانس خازن:
+
+\vspace{0.5cm}
+\begin{minipage}{0.5\textwidth}
+	\begin{gather*}
+		Z_c = \frac{1}{jwc} = \frac{-j}{wc} \rightarrow Y_c = jwc
+	\end{gather*}
+\end{minipage}
+\begin{minipage}{0.3\textwidth}
+	\begin{center}
+		\begin{circuitikz}
+			\draw (0,0) to[capacitor] (0,2);
+		\end{circuitikz}
+	\end{center}
+\end{minipage}
+
+\vspace{1cm}
+
+امپدانس سلف:
+
+\vspace{0.5cm}
+\begin{minipage}{0.5\textwidth}
+	\begin{gather*}
+		Z_L = jwL \rightarrow Y_L = \frac{1}{jwL} = \frac{-j}{wL}
+	\end{gather*}
+\end{minipage}
+\begin{minipage}{0.3\textwidth}
+	\begin{center}
+		\begin{circuitikz}
+			\draw (0,0) to[L] (0,2);
+		\end{circuitikz}
+	\end{center}
+\end{minipage}
+
+\begin{example}
+	مقدار جریان را در شکل زیر بیابید.
+	
+	\begin{minipage}{0.3\textwidth}
+		\begin{gather*}
+			V_s = 17.9 \measuredangle 30^\circ	
+		\end{gather*}
+	\end{minipage}
+\begin{minipage}{0.5\textwidth}
+	\vspace{0.5cm}
+		\begin{center}
+		\begin{circuitikz}
+			\draw (0,2) to[american voltage source] (0,0);
+			\draw (2,2) to[R, l=$2\Omega$] (2,0);
+			\draw (4,2) to[L,l=$4j$] (4,0);
+			\draw (0,2) to[short] (4,2);
+			\draw (0,0) to[short] (4,0);
+		\end{circuitikz}
+	\end{center}
+\end{minipage}
+\end{example}
+
+\begin{solu}
+	\ \\
+	\begin{gather*}
+		Z_{eq} = 2 \textbardbl j4 = \frac{2(j4)}{2+j4} = \frac{8j}{4.47\measuredangle \tan^{-1}(2)}\\
+		= \frac{8 \measuredangle 90^\circ}{4.47\measuredangle \tan^{-1}(2)} =
+		\frac{8}{4.47} \measuredangle (90 - 63.43) = \\
+		= 1.79 \measuredangle 26.57^\circ
+	\end{gather*}
+	\begin{gather*}
+		I = \frac{V_s}{Z_{eq}} = \frac{17.9 \measuredangle 30^\circ}{1.79 \measuredangle 26.57^\circ}
+		=10 \measuredangle 3.43^\circ
+	\end{gather*}
+	\begin{gather*}
+	\Rightarrow i(t) = 10\cos (\omega t + 3.43^\circ)
+\end{gather*}
+\end{solu}
+
+
+
+\begin{remark}
+	\begin{itemize}
+		\item
+		امپدانس سلف همیشه مثبت و ادمیتانس سلف منفی است.
+		\item
+		امپدانس خازن همیشه منفی و ادمیتانس خازن مثبت است.
+	\end{itemize}
+\end{remark}
+
+\begin{example}
+	در مدار شکل زیر امپدانس معادل را در فرکانس 
+	$\omega = 10^3 (\frac{rad}{s})$
+	بدست آوردید.
+	
+		\begin{center}
+		\begin{circuitikz}
+			\draw (2,2) to[L,l=$5mH$] (2,0);
+			\draw (0,2) to[capacitor,l=$100\mu F$,*-] (2,2);
+			\draw (0,0) to[short,*-] (2,0);
+			\draw[->] (-0.25,-0.5) -- (-0.25,0.5) -- (0.5,0.5) node[xshift=-1.25cm]{$Z_{eq}$};
+		\end{circuitikz}
+	\end{center}
+\end{example}
+
+\begin{solu}
+	\begin{gather*}
+		Z_{eq} = Z_c + Z_L\\
+		Z_c = \frac{-j}{\omega c} = \frac{-j}{10^3 \times 100 \times 10^{-6}}= -j10 \Omega \\
+		Z_L = j\omega L = j(10^3)(5\times 10^{-3}) = j5
+	\end{gather*}
+	\begin{gather*}
+	Z_{eq} = Z_c + Z_L = -j10 + j5 = -j5 = -5 \measuredangle 90^\circ
+	\end{gather*}
+\end{solu}
+
+
+
+
+\begin{remark}
+	واحد امپدانس \textbf{اهم} و واحد ادمیتانس \textbf{مهو} است.
+\end{remark}
+
+
+\begin{example}
+	امپدانس معادل را به دست آورید.
+	
+		\begin{center}
+		\begin{circuitikz}
+			\draw (2,2) to[L, l=$5mH$] (2,0);
+			\draw (4,2) to[capacitor,l=$100\mu F$] (4,0);
+			\draw (0,2) to[short,*-] (4,2);
+			\draw (0,0) to[short,*-] (4,0);
+			\draw[->] (-0.25,-0.5) -- (-0.25,0.5) -- (0.5,0.5) node[xshift=-1.25cm]{$Z_{eq}$};
+		\end{circuitikz}
+	\end{center}
+\end{example}
+
+\begin{solu}
+	\begin{gather*}
+		Z_c = \frac{-j}{\omega c} = \frac{-j}{10^3 \times 100 \times 10^{-6}}= -j10 \Omega \\
+		Z_L = j\omega L = j(10^3)(5\times 10^{-3}) = j5
+	\end{gather*}
+	\begin{gather*}
+		Z_{eq} = \frac{Z_c.Z_L}{Z_c + Z_L} \\
+		Z_{eq} = \frac{-j10.j5}{-j10 + j5} = \frac{50}{-j5} = j10 = 10 \measuredangle 90^\circ
+	\end{gather*}
+\end{solu}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
