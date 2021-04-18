@@ -1,5 +1,10 @@
 \documentclass[12pt]{article}
 \usepackage[labelsep=space]{caption}
+\usepackage{fancyhdr}
+\fancyfoot[C]{\thepage}
+\fancyhead[L]{مدارهای منطقی و الکتریکی}
+\fancyhead[R]{\leftmark}
+\usepackage[hidelinks]{hyperref}
 \linespread{1.5}
 %\usepackage{background}
 %\backgroundsetup{contents=webpy.ir, opacity=0.45, scale=3}
@@ -35,6 +40,7 @@
 
 
 \begin{document}
+	\pagestyle{empty}
 	%\NoBgThispage
 	\includegraphics[height=12cm]{images/besm}
 	\title{جزوه مدار الکتریکی و الکترونیکی }
@@ -47,7 +53,8 @@
 	
 	\newpage
 	\tableofcontents
-	
+	\newpage
+	\pagestyle{fancy}	
 	\include{intro}
 	\include{section01}
 	\include{section02}
