@@ -1,0 +1,286 @@
+\section{توان در حالت ماندگار سینوسی}
+
+دو توان کلی داریم:
+
+\subsection{توان لحظه‌ای}
+توان لحظه‌ای برای هر عنصر الکتریکی یا الکترونیکی برابر با حاصلضرب ولتاژ لحظه‌ای در جریان لحظه‌ای گذرنده از آن. برای مثال در مدار ساده‌ی زیر اگر جریان عبوری از آن i(t)  باشد داریم:
+
+\begin{minipage}{0.4\textwidth}
+	\begin{center}
+		\begin{circuitikz}
+			\draw (0,2) to[american voltage source] (0,0);
+			\draw (2,2) to[generic, l=$Z$] (2,0);
+			\draw (0,2) to[short, i=$i_(t)$] (2,2);
+			\draw (0,0) to[short] (2,0);
+		\end{circuitikz}
+	\end{center}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+	\begin{gather*}
+		V(t) = V_m \cos (\omega t + \theta_v) \\
+		I(t) = I_m \cos (\omega t + \theta_i)
+	\end{gather*}
+\end{minipage}
+\vspace{1cm}
+
+بنابراین رابطه محاسبه توان در حالت ماندگار سینوسی:
+
+
+\begin{gather}\label{eq:8-1}
+	P(t) = V(t) I(t) = V_m I_m \cos (\omega t + \theta_v).\cos(\omega t + \theta_i)
+\end{gather}
+
+با استفاده از اتحاد مثلثاتی زیر می‌توان رابطه \ref{eq:8-1} را ساده تر کرد:
+
+\begin{gather*}
+	\cos \alpha \cos \beta = \frac{1}{2}\Big[\cos(\alpha + \beta) + \cos(\alpha - \beta) \Big]
+\end{gather*}
+
+\begin{gather*}
+	P(t) = \frac{1}{2} V_m I_m \Big( \overbrace{\cos(\theta_v - \theta_i)}^{\text{\rl{مستقل از زمان و مقدار ثابتی دارد.}}} + \cos (2\omega t + \theta_v + \theta_i) \Big)
+\end{gather*}
+
+
+
+\begin{example}
+	در مدار شکل زیر 
+	$ V(t) = 12 \cos (\omega t + 52^\circ) $
+	و 
+	$Z = 6 \angle 27^\circ$
+	توان لحظه‌ای را بدست آورید.
+		\begin{center}
+		\begin{circuitikz}
+			\draw (0,2) to[american voltage source] (0,0);
+			\draw (2,2) to[generic, l=$Z$] (2,0);
+			\draw (0,2) to[short, i=$i_(t)$] (2,2);
+			\draw (0,0) to[short] (2,0);
+		\end{circuitikz}
+	\end{center}
+	
+\end{example}
+
+\begin{solu}
+	برای حل باید استفاده 
+	$i(t)$
+	را محاسبه کرد:
+	
+	\begin{gather*}
+		i(t) = \frac{V(t)}{Z} = \frac{12 \angle 52^\circ}{6 \angle 27^\circ} = 2(52-27) = 2\angle 25^\circ
+	\end{gather*}
+
+	\begin{gather*}
+		P(t) = \frac{1}{2} V_m I_m \Big( \cos(\theta_v - \theta_i) + \cos (2\omega t + \theta_v + \theta_i) \Big) \\
+			P(t) = \frac{1}{2}\times 12 \times 2 \Big( \cos(52- 25) + \cos (2\omega t + 52 + 25) \Big) \\
+			= 12 \Big( \cos(27^\circ) + \cos (2\omega t + 77^\circ) \Big) \\
+			= 10.7 + 12 \cos(2\omega t + 77^\circ) (w) \rightarrow \text{\rl{واحد آن وات است}}
+	\end{gather*}
+\end{solu}
+
+\subsection{توان متوسط}
+
+توان متوسط با استفاده از رابطه‌ی زیر محاسبه خواهد شد:
+\begin{gather*}
+	P_{av} = \frac{1}{T}\int_{t_0}^{t_0+T} P(t)\ dt = \frac{1}{2} V_m I_m \cos(\theta_v - \theta_i)
+\end{gather*}
+
+مفهومی به نام ضریب توان
+\LTRfootnote{Power Factor}
+وجود دارد که با استفاده از رابطه‌ی زیر محاسبه می‌شود:
+\begin{gather*}
+	PF=\cos(\theta_v - \theta_i)
+\end{gather*}
+حال اگر:
+\begin{itemize}
+	\item
+	مدار کاملاً مقاومتی باشد 
+	$ \theta_v - \theta_i = 0 $
+	یعنی 
+	$PF = 1$.
+	
+		\item
+	مدار کاملاً القایی(مداری که فقط سلف دارد) باشد 
+	$ \theta_v - \theta_i = 90^\circ $
+	یعنی 
+	$PF = 0$.
+	
+		\item
+	مدار کاملاً خازنی باشد 
+	$ \theta_v - \theta_i =- 90^\circ $
+	یعنی 
+	$PF = 0$.
+\end{itemize}
+
+\begin{remark}
+	ضریب توان(PF) یکی از معیارهای هر مداری است.
+\end{remark}
+
+\subsection*{توان واکشی}
+
+توان مدارهای کاملاً القایی یا کاملاً خازنی را توان واکشی می نامند و با علامت Q نمایش می‌دهند و داریم که:
+\begin{gather*}
+	Q = \frac{1}{2} V_m I_m \sin(\theta_v - \theta_i)
+\end{gather*}
+
+\begin{remark}
+	در رابطه با توان واکشی توجه داشته باشید که:
+	\begin{itemize}
+		\item
+		واحد اندازه گیری آن 
+		\lr{VAR\LTRfootnote{Volt Amper Reactive}}
+		است.
+		
+		\item
+		به توان واکشی، توان واکنشی هم گفته می‌شود.
+	\end{itemize}
+\end{remark}
+
+
+\begin{example}
+	به مداری ولتاژ
+	$ V(t) = 50 \cos (\omega t + 30^\circ) $
+	اعمال و از آن جریانی معادل
+	$ I(t) = 5 \sin (\omega t - 30^\circ) $
+	ناشی شده است. توان متوسط و توان واکشی مدار را پیدا کنید.
+\end{example}
+
+
+\begin{solu}
+ابتدا رابطه جریان را به یک رابطه cos تبدیل کنید:
+\begin{gather*}
+	 I(t) = 5 \cos(\omega t - 30^\circ - 90^\circ) = 5 \cos(\omega t - 120^\circ)
+\end{gather*}
+حال برای محاسبه توان متوسط داریم که:
+\begin{gather*}
+	P_{av} = \frac{1}{2} V_m I_m \cos(\theta_v - \theta_i)\\
+	= \frac{1}{2} \times 50 \times 5 \cos(30 - (-120))=125\cos(150) = -108.25 w
+\end{gather*}
+و برای محاسبه توان واکشی:
+\begin{gather*}
+	Q = \frac{1}{2} V_m I_m \sin(\theta_v - \theta_i) \\
+	\frac{1}{2} \times 50 \times 5 \sin(30 - (-120)) = 125.\sin(150^\circ) = 62.5 VAR
+\end{gather*}
+\end{solu}
+
+\subsection{مقادیر مؤثر ولتاژ و جریان متناوب}
+
+مقادیر مؤثر برای جریان‌های متناوب استفاده می‌شود و به آن rms نیز گفته می‌شود.
+
+\begin{definition}[مقدار مؤثر جریان متناوب($I_{rms}$)]
+	مقدار جریان مستقیمی که اگر از مقاومت R بگذرد، توانی که به آن می‌دهد با توانی که جریان متناوب به آن می‌دهد یکی باشد.
+\end{definition}
+
+\begin{gather*}
+	\begin{cases}
+		I = I_m \cos(\omega t +\phi)\\
+		V = V_m \cos(\omega t +\phi)
+	\end{cases}
+	\Rightarrow I_{rms} = \frac{I_m}{\sqrt{2}}
+\end{gather*}
+
+\begin{definition}[مقدار مؤثر ولتاژ متناوب($V_{rms}$)]
+مقدار ولتاژ مستقیمی که اگر از مقاومت R بگذرد، توانی که به آن می‌دهد با توانی که ولتاژ متناوب به آن می‌دهد یکی باشد.
+\end{definition}
+
+\begin{gather*}
+	\begin{cases}
+		I = I_m \cos(\omega t +\phi)\\
+		V = V_m \cos(\omega t +\phi)
+	\end{cases}
+	\Rightarrow V_{rms} = \frac{V_m}{\sqrt{2}}
+\end{gather*}
+
+با استفاده از ولتاژ و جریان مؤثر می‌توان رابطه توان متوسط و توان واکنشی را بازنویسی کرد. برای محاسبه توان متوسط داریم که:
+
+\begin{gather*}
+	P_{av} =  V_{rms} I_{rms} \cos(\theta_v - \theta_i)
+\end{gather*}
+و برای محاسبه توان واکشی:
+\begin{gather*}
+	Q =  V_{rms} I_{rms} \sin(\theta_v - \theta_i) 
+\end{gather*}
+
+\subsection{توان ظاهری}
+
+توان ظاهری برابر است با حاصل ضرب مقادیر مؤثر ولتاژ و جریان که با p(کوچک) نشان داده می‌شود و واحد آن ولت‌آمپر (V.A) می‌باشد.
+
+\begin{gather*}
+	p = V_{rms} I_{rms}
+\end{gather*}
+ضریب توان را هم می‌توان با استفاده از توان ظاهری و توان متوسط به صورت زیر بازنویسی کرد:
+
+
+\begin{gather*}
+	PF = \cos(\theta_v - \theta_i) = \frac{P_{av}}{V_{rms} I_{rms}}
+\end{gather*}
+
+\begin{example}
+	در مدار شکل زیر توان متوسط، توان ظاهری و ضریب توان را محاسبه کنید. 
+	\begin{center}
+		\begin{circuitikz}
+			\draw (0,2) to[american voltage source, l_=$20 \angle 0^\circ\ V_{rms}$] (0,0);
+			\draw (0,2) to[generic, l=$2+5j$] (2,2);
+			\draw (2,2) to[generic, l=$1-j$] (2,0);
+			\draw (0,0) to[short] (2,0);
+		\end{circuitikz}
+	\end{center}	
+\end{example}
+
+\begin{solu}
+	ابتدا جریان را محاسبه می‌کنیم:
+	\begin{gather*}
+		I = \frac{V}{Z} = \frac{20 \angle 0^\circ}{(2+j5)+(1-j1)} = \frac{20 \angle 0^\circ}{3+j4} = \frac{20 \angle 0^\circ}{5 \angle 53.13^\circ}\\
+		=4 \angle (0-53.13) = 4 \angle (-53.13^\circ) \Rightarrow I_{rms} = 4
+	\end{gather*}
+	\begin{gather*}
+		p = V_{rms} I_{rms} = 20 \times 4 = 80
+	\end{gather*}
+	\begin{gather*}
+		P_{av} =  V_{rms} I_{rms} \cos(\theta_v - \theta_i) = 20 \times 4 \times \cos(+53.13^\circ) = 48w
+	\end{gather*}
+	\begin{gather*}
+		PF = \cos(\theta_v - \theta_i) = \frac{P_{av}}{V_{rms} I_{rms}} = \frac{48}{80} = 0.6
+	\end{gather*}
+\end{solu}
+
+
+\begin{remark}
+	مقادیر مؤثر فاز ندارد و تنها یک عدد می‌باشد چون طبق تعریف یک جریان مستقیم است.
+\end{remark}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
