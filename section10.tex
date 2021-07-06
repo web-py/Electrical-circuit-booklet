@@ -1,0 +1,742 @@
+\chapter{دیود}
+
+یک پیوند 
+\lr{pn}
+که دو سر آن یک قطعه سیم فلزی جهت وصل کردن به مدار خارجی متصل شده و مجموعه در یک پوشش مناسب قرار داده شده است.
+
+\begin{center}
+	\begin{circuitikz}
+		\draw (0,0) to[diode, i=$I$] (3,0)
+		node[yshift=0.5cm,xshift=-2cm]{+}
+		node[yshift=0.5cm,xshift=-1cm]{-};
+		
+		\draw[->] (0,-0.2) -- (-0.75,-0.75)
+		node[yshift=1cm,xshift=1cm]{A}
+		node[yshift=-0.25cm,xshift=-0.25cm]{\text{آند}};
+		
+			\draw[->] (3,-0.2) -- (3.75,-0.75)
+		node[yshift=1cm,xshift=-0.75cm]{K}
+		node[yshift=-0.25cm,xshift=0.25cm]{\text{کاتد}};
+	\end{circuitikz}
+\end{center}
+
+به زبان ساده یک قطعه الکترونیکی دوسر که در حالت ایده‌ال فقط از یک جهت جریان الکتریکی را از خود عبور می‌دهد و آن هم در جهت فلش روی آن. در حالت ایده‌ال از جهت معکوس هیچ جریانی عبور نمی‌کند.
+
+\section{دیود ایده‌آل}
+\textbf{حالت ایده‌آل}
+ شرایطی است که در دنیای واقعی رخ نمی‌دهد و به صورت فرضی در نظر می‌گیریم مثلاً ایده‌ال دیود این است که فقط از یک طرف جریان را از خود عبور دهد.
+
+نمودار جریان-ولتاژ بر روی یک دیود ایده‌آل به صورت زیر است.(در جریان مستقیم
+(\lr{DC}))
+
+\begin{center}
+	\includegraphics[scale=0.3]{images/sec10/diode-1.jpg}
+\end{center}
+
+دیود ایده‌آل به ازای ولتاژهای منفی هیچ جریانی ندارد و در ولتاژهای مثبت مانند یک سیم با مقاومت صفر عمل می‌کند.
+
+\begin{remark}
+	\begin{itemize}
+		\item
+		به مدارهای دیودی اصطلاحاً سوییچینگ گفته می‌شود.
+		\item
+		به طور کلی مدارهای سوییچی در یک جهت از خود جریان عبور می‌دهند.
+	\end{itemize}
+\end{remark}
+
+در دیودهای ایده‌آل در ولتاژهای مثبت، ولتاژ صفر روی دیود می‌افتد.(در تحلیل اگر ولتاژ دو سر دیود مثبت بود یعنی دیود روشن است.)
+
+\section{دیود غیرایده‌آل}
+
+\begin{center}
+	\includegraphics[scale=0.4]{images/sec10/diode-2.jpg}
+\end{center}
+
+در شکل بالا دیود در
+ $ 0.5  $
+ روشن شده و در
+  $ 0.7  $
+  فعال می‌شود. به ازای ولتاژهای منفی، جریان ثابت است تا زمانی که دیود داغ کند و شکسته شود.
+
+\begin{description}
+	\item
+	[بایاس مستقیم]
+	زمانی اتفاق می‌افتد که قطب مثبت یک منبع ولتاژ را به آند و قطب منفی آن را به کاتد وصل کنیم.
+	
+	\begin{center}
+		\begin{circuitikz}
+			\draw (0,0) to[diode, i=$I$] (3,0)
+			node[yshift=0.5cm,xshift=-2cm]{+}
+			node[yshift=0.5cm,xshift=-1cm]{-};
+			
+			
+			\draw (0,-2) to[battery1] (3,-2)
+			node[yshift=0.5cm,xshift=-2cm]{+}
+			node[yshift=0.5cm,xshift=-1cm]{-};
+			
+			\draw (0,0) to[short] (0,-2);
+			\draw (3,0) to[short] (3,-2);
+
+		\end{circuitikz}
+	\end{center}
+	\item
+	[بایاس معکوس]
+	قطب مثبت یک منبع ولتاژ را به کاتد و قطب منفی آن را به آند وصل کنیم.
+	
+		\begin{center}
+		\begin{circuitikz}
+			\draw (3,0) to[diode] (0,0)
+			node[yshift=0.5cm,xshift=2cm]{+}
+			node[yshift=0.5cm,xshift=1cm]{-};
+			
+			
+			\draw (0,-2) to[battery1] (3,-2)
+			node[yshift=0.5cm,xshift=-2cm]{+}
+			node[yshift=0.5cm,xshift=-1cm]{-};
+			
+			\draw (0,0) to[short] (0,-2);
+			\draw (3,0) to[short] (3,-2);
+			
+		\end{circuitikz}
+	\end{center}
+\end{description}
+
+\begin{remark}
+	فرق اساسی دیود با المانهایی که تا الان خواندیم در این است که در مقاومت، سلف یا خازن مثبت(یا منفی) را خودمان انتخاب می‌کردیم اما در دیود سر مثبت و منفی آن همیشه معلوم است.
+\end{remark}
+
+
+\subsection*{بررسی رفتار دیود واقعی}
+
+اگر یک دیود را در بایاس مستقیم قرار داده و ولتاژ را از مقدار صفر افزایش دهیم متوجه می‌شویم که:
+\begin{itemize}
+	\item[-]
+	صفر ولتاژ
+	$\leftarrow$
+	صفر بودن جریان
+	
+	\item[-]
+	افزایش ولتاژ بیش از 
+	$\leftarrow\  0.5 $
+	ایجاد جریان ضعیفی در مدار
+	
+	\item[-]
+	بعد از ولتاژ 
+	$0.7$
+	ولت، جریان به صورت ناگهانی زیاد می‌شود.
+	
+	
+\end{itemize}
+
+
+\begin{remark}
+	یکی از کاربردهای دیودها در پیاده سازی شبکه‌های کامپیوتری است طوری که میتوان گفت پیاده سازی شبکه‌ها بدون دیودها امکان پذیر نیست.
+\end{remark}
+
+
+اگر دیود را در بایاس معکوس قرار دهیم و ولتاژ خارجی را افزایش دهیم(یعنی ولتاژ منفی را زیاد کنیم)، در این صورت جریان بسیار ضعیفی از مدار خواهد گذشت که به آن جریان اشباع معکوس می‌گویند و آن را با 
+$I_s$
+نشان می‌دهند. با افزایش این ولتاژ معکوس، به مقدار ولتاژی می‌رسیم که به ازای آن جریان به طور ناگهانی زیاد می‌شود. به این ولتاژ، ولتاژ شکست دیود می‌گویند و آن را با 
+$V_R$
+نمایش می‌دهند.
+
+\begin{remark}
+	مقدار 
+	$I_s$
+	خیلی کم است(در حد نانوآمپر). اصطلاحاً به آن جریان نشتی هم گفته می‌شود.
+\end{remark}
+
+رابطه ولتاژ-جریان برای یک دیود واقعی به صورت زیر است:
+\begin{gather}\label{eq:10-1}
+	I = I_s \Big(e^{\frac{V}{mV_T}}-1\Big) \\
+	I_s \rightarrow \text{\rl{جریان اشباع معکوس}} \notag \\
+	V \rightarrow \text{\rl{ولتاژ دو سر دیود}} \notag \\
+	m \rightarrow \text{\rl{پارامتری تجربی که معمولاً از ۱ تا ۲ می‌باشد.}} \notag \\
+	V_T \rightarrow \text{\rl{است.}}\ 25mv\ \text{\rl{برابر با}} (25^\circ)\ \text{\rl{در دمای اتاق}} \notag 
+\end{gather}
+انواع دیود عبارتند از:
+\begin{itemize}
+	\item
+	دیود سیلیکن
+	\item
+	دیود ژرمانیوم
+\end{itemize}
+
+
+\begin{remark}
+	فرمول فلان یک فرمول تجربی است و در آن برای دیودهای سیلیکنی 
+	$m=1.4$
+	و برای دیودهای ژرمانیومی 
+	$m=1$
+	می‌باشد.
+\end{remark}
+
+شرط روشن و فعال شدن دیود ایده‌آل(اگر مسئله چیزی نگفته باشد)، صرفاً مثبت بودن ولتاژ تغذیه دیود است و اگر مقدار 
+$0.7$
+برای فعال شدن را عنوان کرده باشد، شرط روشن بودن دیود، مثبت بودن(بالای صفر بودن) ولتاژ تغذیه آن است و شرط فعال بودن(یعنی مثل سیم عمل کردن)، بیش از 
+$0.7$
+بودن ولتاژ تغذیه است. در مسئله‌ها به طور پیش فرض دیود ایده‌آل است؛ مگر اینکه گفته شود دیود واقعی است که باید از رابطه تجربی 
+\eqref{eq:10-1}
+استفاده شود.
+
+\begin{example}
+	روشن یا خاموش و همچنین فعال یا غیر فعال بودن دیود را مشخص کنید.
+		\begin{center}
+		\begin{circuitikz}
+			\draw (3,2) to[diode] (3,0);
+			
+			
+			\draw (0,2) to[battery1,l_=$0.2$] (0,0);
+			
+			\draw (0,0) to[short] (3,0);
+			\draw (0,2) to[short] (3,2);
+			
+		\end{circuitikz}
+	\end{center}
+\end{example}
+\begin{solu}
+	چون ولتاز دو سر مثبت است و بایاس مستقیم است بنابراین دیود روشن است. اما از آنجایی که ولتاژ بیشتر از 
+	$0.7$
+	نیست، بنابراین دیود غیرفعال است.
+\end{solu}
+
+\begin{example}
+	روشن یا خاموش و همچنین فعال یا غیر فعال بودن دیود را مشخص کنید.
+	\begin{center}
+		\begin{circuitikz}
+			\draw (3,2) to[diode] (3,0);
+			
+			
+			\draw (0,2) to[battery1,l_=$1.5$] (0,0);
+			
+			\draw (0,0) to[short] (3,0);
+			\draw (0,2) to[short] (3,2);
+			
+		\end{circuitikz}
+	\end{center}
+\end{example}
+\begin{solu}
+	چون ولتاز دو سر مثبت است و بایاس مستقیم است بنابراین دیود روشن است. و از آنجایی که ولتاژ بیشتر از 
+	$0.7$
+	است، دیود فعال هم هست.
+\end{solu}
+
+\begin{example}
+	روشن یا خاموش و همچنین فعال یا غیر فعال بودن دیود را مشخص کنید.
+	\begin{center}
+		\begin{circuitikz}
+			\draw (3,0) to[diode] (3,2);
+			
+			
+			\draw (0,2) to[battery1] (0,0);
+			
+			\draw (0,0) to[short] (3,0);
+			\draw (0,2) to[short] (3,2);
+			
+		\end{circuitikz}
+	\end{center}
+\end{example}
+\begin{solu}
+	چون ولتاز تغذیه منفی است(بایاس معکوس) بنابراین دیود خاموش است.
+\end{solu}
+
+
+
+چند نکته برای تحلیل مدارهای دیودی:
+
+\subsection*{دیودهای سری با منبع ولتاژ}
+
+\begin{description}
+	\item[الف] 
+	ولتاژ ورودی 
+	\lr{DC}
+	حتماً باید بزرگتر از ولتاژ روشن شدن دیود باشد. اگر ولتاژ ورودی کمتر از ولتاژ روشن شدن دیود باشد، دیود
+	\lr{off}
+	یا مدار باز است.
+	
+	\item[ب] 
+	برای تعیین بایاس مستقیم یا معکوس بودن دیود، آن را یک مقاومت فرض می‌کنیم و علامت مثبت و منفی دیود را نیز روی مقاومت فرضی می‌اندازیم. چنانچه جهت جریان مدار با علامت‌های این مقاومت همخوانی داشت، بایاس مستقیم و در غیراینصورت بایاس معکوس است.(مقاومت فرضی بسیار کوچک است.)
+	
+	\item[ج] 
+	در نهایت با استفاده از روش‌های تحلیل مداری پارامترهای خواسته شده را بدست می‌آوریم.
+\end{description}
+
+
+\begin{remark}
+	وقتی در مدار یک منبع داشته باشیم جریان همیشه از سر مثبت مدار خارج می‌شود.
+\end{remark}
+
+
+
+\begin{example}
+	مستقیم یا معکوس بودن بایاس را مشخص کنید.
+	
+		\begin{center}
+		\begin{circuitikz}
+			\draw (2,0) to[R, l_=$R_L$] (2,2);
+			
+			
+			\draw (0,2) to[battery1, l_=$E$] (0,0);
+			
+			\draw (0,0) to[short] (2,0);
+			\draw (0,2) to[diode] (2,2);
+			
+		\end{circuitikz}
+	\end{center}
+\end{example}
+
+\begin{solu}
+	طبق توضیحات ابتدا جهت جریان را مشخص می‌کنیم. از آنجایی که علامت دیود با جهت جریان همخوانی دارد لذا بایاس مستقیم است. برای محاسبه جریان عبوری از دیود نیز می‌توان درون حلقه 
+	\lr{KVL}
+	را اجرا کرد.
+	\begin{center}
+		\begin{circuitikz}
+			\draw (2,0) to[R, l_=$R_L$] (2,2);
+			
+			
+			\draw (0,2) to[battery1,i=$ $, l_=$E$] (0,0);
+			
+			\draw (0,0) to[short] (2,0);
+			\draw (0,2) to[diode] (2,2)
+			node[xshift=-0.5cm,yshift=0.25cm]{-}
+			node[xshift=-1.5cm,yshift=0.25cm]{+};
+			\draw[<-,blue] (1.25,1) arc (30:210:0.25);
+		\end{circuitikz}
+	\end{center}
+	\begin{gather*}
+		if \qquad E>V_{on}: \\
+		-E + V_D +R_LI_D = 0 \rightarrow I_D = \frac{E-V_D}{R_L}
+	\end{gather*}
+\end{solu}
+
+
+\begin{example}
+	مستقیم یا معکوس بودن بایاس را مشخص کنید.
+	
+	\begin{center}
+		\begin{circuitikz}
+			\draw (2,0) to[R, l_=$R_L$] (2,2);
+			
+			
+			\draw (0,0) to[battery1, l=$E$] (0,2);
+			
+			\draw (0,0) to[short] (2,0);
+			\draw (0,2) to[diode] (2,2);
+			
+		\end{circuitikz}
+	\end{center}
+\end{example}
+
+\begin{solu}
+	طبق توضیحات ابتدا جهت جریان را مشخص می‌کنیم. از آنجایی که علامت دیود با جهت جریان همخوانی ندارد لذا بایاس معکوس است. پس غیرفعال است و آن را مدار باز در نظر می‌گیریم.
+	\begin{center}
+		\begin{circuitikz}
+			\draw (2,0) to[R, l_=$R_L$] (2,2);
+			
+			
+			\draw (0,0) to[battery1,i=$ $, l=$E$] (0,2);
+			
+			\draw (0,0) to[short] (2,0);
+			\draw (0,2) to[diode] (2,2)
+			node[xshift=-0.5cm,yshift=0.25cm]{-}
+			node[xshift=-1.5cm,yshift=0.25cm]{+};
+			\draw[<-,blue] (1.25,1) arc (30:210:0.25);
+		\end{circuitikz}
+	\end{center}
+	\begin{gather*}
+		I_D = 0 ,\quad V_R = 0 \\
+		E+V_D = 0 \rightarrow V_D = -E
+	\end{gather*}
+\end{solu}
+
+
+\begin{example}
+	در مدار شکل زیر مقدار
+	$V_D$
+	و ولتاژ بار را بیابید.
+	$(V_{ON} = 0.7)$
+	
+	\begin{center}
+		\begin{circuitikz}
+			\draw (2,0) to[R, l_=$1.2\Omega$] (2,2);
+			
+			
+			\draw (0,2) to[battery1, l_=$0.5$] (0,0);
+			
+			\draw (0,0) to[short] (2,0);
+			\draw (0,2) to[diode] (2,2);
+			
+		\end{circuitikz}
+	\end{center}
+\end{example}
+
+\begin{solu}
+	طبق توضیحات ابتدا جهت جریان را مشخص می‌کنیم. از آنجایی که علامت دیود با جهت جریان همخوانی دارد پس بایاس مستقیم است. اما ولتاژ منبع کمتر از ولتاژ فعالسازی دیود است لذا دیود خاموش است؛ پس آن را مدار باز در نظر می‌گیریم.
+	\begin{center}
+		\begin{circuitikz}
+			\draw (2,0) to[R, l_=$1.2\Omega$] (2,2);
+			
+			
+			\draw (0,2) to[battery1,i_=$I_D$, l_=$0.5$] (0,0);
+			
+			\draw (0,0) to[short] (2,0);
+			\draw (0,2) to[short,-*] (0.75,2);
+			\draw (1.25,2) to[short,*-] (2,2)
+			node[xshift=-0.5cm,yshift=0.25cm]{-}
+			node[xshift=-1cm,yshift=0.25cm]{$V_D$}
+			node[xshift=-1.5cm,yshift=0.25cm]{+};
+			\draw[<-,blue] (1.25,1) arc (30:210:0.25);
+		\end{circuitikz}
+	\end{center}
+	\begin{gather*}
+		I_D = 0 ,\quad V_R = 0 \\
+		-E+V_D = 0 \rightarrow V_D = E = 0.5\ V
+	\end{gather*}
+\end{solu}
+
+
+\begin{example}
+	جریان
+	$I_D$
+	را در شکل زیر محاسبه کنید.
+	$(V_{ON} = 0.7)$
+	
+	\begin{center}
+		\begin{circuitikz}
+			\draw (3,0) to[R, l_=$5.6k\Omega$] (3,2);
+			
+			
+			\draw (0,2) to[battery1, l_=$12$] (0,0);
+			
+			\draw (0,0) to[short] (3,0);
+			\draw (0,2) to[diode,l=$D_1$] (1.5,2);
+				\draw (1.5,2) to[diode,l=$D_2$] (3,2);
+		\end{circuitikz}
+	\end{center}
+\end{example}
+
+\begin{solu}
+	چون جهت جریان با علامت دیودها همخوانی دارد و منبع ولتاژ بیشتر از ولتاژ فعالسازی است بنابراین هر دو دیود روشن و بایاس مستقیم هستند. حال که دیودها روشن هستند روی آنها ولتاژ $0.7$ قرار می‌گیرد که با اجرای 
+	\lr{KVL}
+	می‌توان مقدار جریان را محاسبه کرد.
+	
+		\begin{center}
+		\begin{circuitikz}
+			\draw (3,0) to[R, l_=$5.6k\Omega$] (3,2);
+			
+			
+			\draw (0,2) to[battery1, l_=$12$] (0,0);
+			
+			\draw (0,0) to[short] (3,0);
+			\draw (0,2) to[diode,l=$D_1$] (1.5,2);
+			\draw (1.5,2) to[diode,l=$D_2$] (3,2);
+			
+			\draw[<-,blue](1.5,1) arc (30:210:0.25);
+		\end{circuitikz}
+	\end{center}
+	\begin{gather*}
+		-12 + 0.7 + 0.7 + 5600I_D = 0 \rightarrow I_D = \frac{12-1.4}{5600} = 1.89\ mA
+	\end{gather*}
+\end{solu}
+
+
+\begin{example}
+	ولتاژ خروجی را بدست آورید.
+	$(V_{ON} = 0.7)$
+	
+	\begin{center}
+		\begin{circuitikz}
+			\draw (3,0) to[R, l=$5.6k\Omega$] (3,2)
+			node[xshift=0.5cm,yshift=-1cm]{$V_O$}
+			node[xshift=0.5cm,yshift=-0.5cm]{$+$}
+			node[xshift=0.5cm,yshift=-1.5cm]{$-$};
+			
+			
+			\draw (0,2) to[battery1, l_=$12$] (0,0);
+			
+			\draw (0,0) to[short] (3,0);
+			\draw (0,2) to[diode,l=$D_1$] (1.5,2);
+			\draw (3,2) to[diode,l_=$D_2$] (1.5,2);
+		\end{circuitikz}
+	\end{center}
+\end{example}
+
+\begin{solu}
+	جهت جریان ساعتگرد است؛ بنابراین دیود شماره یک روشن و دیود شماره دو خاموش است. پس:
+	\begin{gather*}
+		I = 0 \rightarrow V_O = 0
+	\end{gather*}
+\end{solu}
+
+
+\begin{example}
+	جریان دیودها را بدست آورید.
+	$(V_{ON} = 0.7)$
+	
+		\begin{center}
+		\begin{circuitikz}
+			\draw (2,2) to[diode,l=$D_1$] (2,0);
+			\draw (4,2) to[diode,l=$D_2$] (4,0);
+			
+			\draw (0,2) to[battery1, l_=$10\ V$] (0,0);
+			
+			\draw (0,0) to[short] (4,0);
+			\draw (2,2) to[short] (4,2);
+			
+			\draw (0,2) to[R,l=$0.33k$] (2,2);
+
+		\end{circuitikz}
+	\end{center}
+\end{example}
+
+\begin{solu}
+	هر دو دیود روشن و بایاس مستقیم هستند. دو دیود موازی هستند و دارای یک اختلاف ولتاژ($0.7$)هستند پس با اجرای 
+	\lr{KVL}
+	در حلقه مدار داریم:
+	\begin{gather*}
+		-10 + 3300I + 0.7 = 0 \rightarrow I=\frac{10-0.7}{3300}=28.18\ mA
+	\end{gather*}
+این مقدار جریان کلی مدار است. حال برای اینکه جریان دیودها را بدست آوریم چون ولتاژ دوسر هر دو یکی است؛ پس:
+	
+	\begin{gather*}
+		I_{D_1} = I_{D_2} = \frac{I}{2} = \frac{28.18\ mA}{2}=14.09\ mA
+	\end{gather*}
+\end{solu}
+
+
+\begin{example}
+	جریان دیودها را بدست آورید.
+	
+		\begin{center}
+		\begin{circuitikz}
+			\draw (4,1.5) to[diode,l=$D_2$] (2,1.5);
+			\draw (2,2.5) to[diode,l=$D_1$] (4,2.5);
+			\draw (5,2) to[battery1, l=$4\ V$] (5,0);
+			
+			\draw (0,2) to[battery1, l_=$20\ V$] (0,0);
+			
+			\draw (0,0) to[short] (5,0);
+			\draw (2,1.5) to[short] (2,2.5);
+			\draw (4,1.5) to[short] (4,2.5);
+			\draw (4,2) to[short] (5,2);
+			
+			\draw (0,2) to[R,l=$2.2k\Omega$] (2,2);
+			
+		\end{circuitikz}
+	\end{center}
+	
+	
+\end{example}
+
+\begin{solu}
+	دیود یک روشن و فعال است اما دیود دو به دلیل بایاس معکوس بودن خاموش است پس جریانی از آن عبور نمی‌کند. برای مشخص کردن جریان عبوری از دیود شماره یک نیز کافی است که دیود شماره دو را مدار باز در نظر گرفت و در حلقه بزرگ
+	\lr{KVL}
+	زد. پس داریم که:
+	
+	\begin{gather*}
+		-20+2.2I_{D_1} + 0.7 + 4 = 0 \rightarrow I_{D_1} = \frac{20-4-0.7}{2.2k} = 6.95\ mA
+	\end{gather*}
+\end{solu}
+
+
+\begin{example}
+	جریان دیودها را بدست آورید.
+	
+		\begin{center}
+		\begin{circuitikz}
+			\draw (2,2) to[diode,l=$D_2$] (2,0);
+			\draw (4,2) to[short] (4,0);
+			
+			\draw (0,2) to[battery1, l_=$20\ V$] (0,0);
+			
+			\draw (2,0) to[short] (4,0);
+			\draw (2,2) to[R,l=$0.33k\Omega$] (4,2);
+			\draw (0,0) to[R,l_=$5.6k\Omega$] (2,0);
+			
+			\draw (0,2) to[diode,l=$D_1$] (2,2);
+			
+		\end{circuitikz}
+	\end{center}
+\end{example}
+
+
+\begin{solu}
+	هر دو دیود روشن و فعال هستند بنابراین اختلاف ولتاژ دو سر آنها 
+	$0.7$
+	است. در این صورت می‌توان جریانی را که از مقاومت 
+	$0.33$
+کیلواهمی می‌گذرد را محاسبه کرد:
+	\begin{gather*}
+		I_{0.33k\Omega} = \frac{0.7}{0.33\times 10^3} = 0.212\ mA
+	\end{gather*}
+	حال با اجرای یک 
+	\lr{KVL}
+	در حلقه‌ی سمت چپ می‌توان جریان عبوری از دیود شماره یک را محاسبه کنیم.
+	\begin{gather*}
+		I_{D_1} = \frac{20-0.7-0.7}{5.6\times 10^3}=3.3\ mA
+	\end{gather*}
+	با استفاده از قانون گره‌ها نیز می‌توان جریان عبوری از دیود شماره دو را محاسبه کرد:
+	\begin{gather*}
+		I_{D_2} = I_{D_1} - I_{0.33k\Omega} = 3.3 - 0.212 = 3.088\ mA
+	\end{gather*}
+\end{solu}
+
+\section{دیود زنر}
+
+این دیود را در مدارها به صورت زیر نمایش می‌دهیم:
+
+\begin{center}
+	\begin{circuitikz}
+		\draw (0,0) to[zzD] (0,2)
+		node[xshift=0.75cm,yshift=-1cm]{$V_z$}
+		node[xshift=-0.75cm,yshift=-1cm]{$V$}
+		node[xshift=-0.75cm,yshift=-0.5cm]{$+$}
+		node[xshift=-0.75cm,yshift=-1.5cm]{$-$};
+	\end{circuitikz}
+\end{center}
+
+در مورد دیودهای زنر دو قانون کلی برقرار است:
+\begin{gather*}
+	\begin{cases}
+		V > V_z \rightarrow D: ON,  Active \rightarrow \text{\rl{ دیود زنر مثل یک منبع ولتاژ ثابت عمل می‌کند.}} \\
+		V < V_z \rightarrow D: OFF \rightarrow \quad\text{\rl{ دیود زنر مدار باز عمل می‌کند.}}
+	\end{cases}
+\end{gather*}
+
+
+\begin{remark}
+	همواره برای تثبیت ولتاژ از مدارهای رگولاتور ولتاژ استفاده می‌کنند که این مدارها متنوع هستند و مهم‌ترین این مدارها، مدارهای رگولاتور زنری هستند.
+\end{remark}
+
+\subsection*{آنالیز مدارهای زنری}
+برای تحلیل مدارهای زنری، ابتدا ولتاژ دو سر دیود را بدون در نظر گرفتن دیود و با تحلیل مداری به دست می‌آوریم و براین اساس مشخص می‌نماییم که دیود روشن یا خاموش است. با قرار دادن مدار معادل برای دیود زنر(طبق دو قاعده بالا)  مدار را تحلیل می‌کنیم.
+
+\begin{example}
+	برای مثال مدار زیر را به صورت زیر تحلیل می‌کنیم:
+	\begin{center}
+		\begin{circuitikz}
+			\draw (0,2) to[battery1,l_=$V_i$] (0,0);
+			
+			\draw (2,0) to[zzD,l=$V$] (2,2);
+			
+			\draw (4,0) to[R,l_=$R_L$] (4,2);
+			\draw (0,2) to[R,l=$R_i$] (2,2);
+			
+			\draw (0,0) to[short] (4,0);
+			\draw (2,2) to[short] (4,2);
+		\end{circuitikz}
+	\end{center}
+	
+	ابتدا دیود در نظر گرفته نمی‌شود؛ پس ولتاژ دو سر دیود همان ولتاژ دو سر مقاومت
+	$R_L$
+	می‌باشد. این دو مقاومت سری هست که با تقسیم ولتاژ می‌توان ولتاژ دو سر مقاومت 
+	$R_L$
+	را محاسبه کرد. پس داریم:
+	\begin{gather*}
+		V = \frac{R_L}{R_L + R_i}V_i
+	\end{gather*}
+	حال دو حالت رخ می‌دهد:
+	\begin{description}
+		\item[الف] 
+		ولتاژ بدست آمده از ولتاژ روشن شدن دیود زنر
+		$(V_z)$
+		بیشتر باشد به عبارت دیگر
+		$V > V_z$
+		باشد در این صورت مدار به شکل زیر می‌شود که باید آنرا تحلیل کرد:
+			\begin{center}
+			\begin{circuitikz}
+				\draw (0,2) to[battery1,l_=$V_i$] (0,0);
+				
+				\draw (2,2) to[battery1,l=$V_z$] (2,0);
+				
+				\draw (4,0) to[R,l_=$R_L$] (4,2);
+				\draw (0,2) to[R,l=$R_i$] (2,2);
+				
+				\draw (0,0) to[short] (4,0);
+				\draw (2,2) to[short] (4,2);
+			\end{circuitikz}
+		\end{center}
+		
+		\item[ب] 
+		ولتاژ به دست آمده از ولتاژ روشن شدن دیود زنر کمتر باشد
+		$(V < V_z)$
+		در این صورت مدار شکل زیر را تحلیل می‌کنیم:
+		
+			\begin{center}
+			\begin{circuitikz}
+				\draw (0,2) to[battery1,l_=$V_i$] (0,0);
+				
+				\draw (2,2) to[short,-*] (2,1.25);
+				\draw (2,0) to[short,-*] (2,0.75);
+				
+				\draw (4,0) to[R,l_=$R_L$] (4,2);
+				\draw (0,2) to[R,l=$R_i$] (2,2);
+				
+				\draw (0,0) to[short] (4,0);
+				\draw (2,2) to[short] (4,2);
+			\end{circuitikz}
+		\end{center}
+		
+		
+	\end{description}
+\end{example}
+
+توان دیود زنر از رابطه‌ی زیر محاسبه می‌شود:
+\begin{gather*}
+	P_z = V_zI_z < P_{z_{max}}
+\end{gather*}
+
+
+\begin{example}
+	مطلوب است تعیین
+	$P_z, I_z, V_R, V_L$
+	در مدار زیر، به شرطی که:
+	
+	الف)
+	$R_L = 1.2\ k\Omega$
+	
+	ب)
+	$R_L = 3\ k\Omega$
+	(به عنوان تمرین به عهده‌ی دانشجو)
+	
+		\begin{center}
+		\begin{circuitikz}
+			\draw (0,2) to[battery1,l_=$16\ V$] (0,0);
+			
+			\draw (2,0) to[zzD,l=$V$] (2,2);
+			
+			\draw (4,0) to[R,l_=$R_L$] (4,2);
+			\draw (0,2) to[R,l=$1\ k\Omega$] (2,2);
+			
+			\draw (0,0) to[short] (4,0);
+			\draw (2,2) to[short] (4,2);
+		\end{circuitikz}
+	\end{center}
+	(داده‌های دیود زنر:
+	$V_z=10\ V ,\qquad P_{z_{max}} = 30\ w \qquad$)
+\end{example}
+
+
+\begin{solu}
+الف)	ابتدا بدون در نظر گرفتن دیود زنر ولتاژ دو سر آنرا محاسبه می‌کنیم:
+
+	\begin{gather*}
+		V = \frac{R_L}{R_L + 1k\Omega}\times 16 = \frac{1.2\times 10^3}{1.2\times 10^3 + 1 \times 10^3} = 8.73\ V
+	\end{gather*}
+حال ولتاژ را با ولتاژ روشن شدن دیود زنر مقایسه می‌کنیم و می‌بینیم که:
+$V<V_z$
+است. این یعنی دیود خاموش است پس آنرا مدار باز در نظر می‌گیریم. بنابراین:
+\begin{gather*}
+	I_z = 0, \qquad P_z = 0 \\
+	\text{مدار}I = \frac{16}{1.2\times 10^3 + 1 \times 10^3}=7.27\ mA \\
+	V_L = 1.2^k \times 7.27^{mA} = 8.73\ V \\
+	V_R = 1^k \times 7.27^{mA} = 7.27\ V 
+\end{gather*}
+\end{solu}
+
+
+
+
+
+
+

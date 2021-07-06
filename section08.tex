@@ -1,8 +1,8 @@
-\section{توان در حالت ماندگار سینوسی}
+\chapter{توان در حالت ماندگار سینوسی}
 
 دو توان کلی داریم:
 
-\subsection{توان لحظه‌ای}
+\section{توان لحظه‌ای}
 توان لحظه‌ای برای هر عنصر الکتریکی یا الکترونیکی برابر با حاصلضرب ولتاژ لحظه‌ای در جریان لحظه‌ای گذرنده از آن. برای مثال در مدار ساده‌ی زیر اگر جریان عبوری از آن i(t)  باشد داریم:
 
 \begin{minipage}{0.4\textwidth}
@@ -76,7 +76,7 @@
 	\end{gather*}
 \end{solu}
 
-\subsection{توان متوسط}
+\section{توان متوسط}
 
 توان متوسط با استفاده از رابطه‌ی زیر محاسبه خواهد شد:
 \begin{gather*}
@@ -114,7 +114,7 @@
 	ضریب توان(PF) یکی از معیارهای هر مداری است.
 \end{remark}
 
-\subsection*{توان واکشی}
+\section*{توان واکشی}
 
 توان مدارهای کاملاً القایی یا کاملاً خازنی را توان واکشی می نامند و با علامت Q نمایش می‌دهند و داریم که:
 \begin{gather*}
@@ -161,7 +161,7 @@
 \end{gather*}
 \end{solu}
 
-\subsection{مقادیر مؤثر ولتاژ و جریان متناوب}
+\section{مقادیر مؤثر ولتاژ و جریان متناوب}
 
 مقادیر مؤثر برای جریان‌های متناوب استفاده می‌شود و به آن rms نیز گفته می‌شود.
 
@@ -199,7 +199,7 @@
 	Q =  V_{rms} I_{rms} \sin(\theta_v - \theta_i) 
 \end{gather*}
 
-\subsection{توان ظاهری}
+\section{توان ظاهری}
 
 توان ظاهری برابر است با حاصل ضرب مقادیر مؤثر ولتاژ و جریان که با p(کوچک) نشان داده می‌شود و واحد آن ولت‌آمپر (V.A) می‌باشد.
 
@@ -248,20 +248,181 @@
 \end{remark}
 
 
+\section{توان مختلط}
+
+توان مختلط را با S نمایش می‌دهد و برابر است با:
+
+\begin{gather*}
+	S = P_{av} + jQ
+\end{gather*}
+
+واحد آن VA (ولت-آمپر) می‌باشد.
+
+\begin{example}
+	در مدار شکل زیر باری با توان متوسط $ 8kw $ با ضریب توان پس‌افتی $ 0.8 $ به کمک خطی با امپدانس
+	$ 0.05+j0.2\Omega $
+	  از منبع
+	   $ Vـs $
+	    تغذیه می‌شود. ولتاژ مؤثر بار
+	 $ 220V_{rms} $
+	 	 است. ولتاژ منبع $ V_s $ را تعیین کنید. 
+	 	 
+	 	 \begin{center}
+	 	 	\begin{circuitikz}
+	 	 		\draw (0,2.5) to[american voltage source,l_=$V_s$] (0,0);
+	 	 		\node[rectangle,draw,xshift=4cm, yshift=1.25cm,align=center] (bar) {$P_{av} = 8kw$\\$PF = 0.8$};
+	 	 		\draw (0,2.5) to[R, l=$0.05$] (2,2.5);
+	 	 		\draw (2,2.5) to[L, l=$j0.2$] (4,2.5);
+	 	 		\draw(4,2.5) -- (bar);
+	 	 		\draw (0,0) -- (4,0) -- (bar);
+	 	 		
+	 	 		\draw[<->] (2.5,0.5) -- (2.5,2) node[xshift=-1cm,yshift=-0.75cm]{$220V_{rms}$};
+	 	 	\end{circuitikz}
+	 	 \end{center}
+\end{example}
+
+\begin{solu}
+	\ \\
+	\begin{gather*}
+		V_{rms}. I_{rms} = \frac{8000}{0.8} \Rightarrow I_{rms} = \frac{8000}{0.8\times 220} = 45.45\ A_{rms}\\
+		\cos(\theta_v - \theta_i) = 0.8 \rightarrow \theta_v - \theta_i = 36.87^\circ \Rightarrow 	\sin(\theta_v - \theta_i) = 0.6\\
+		\text{بار} Q =  V_{rms} I_{rms} \sin(\theta_v - \theta_i) = 220 \times 45.45 \times 0.6 = 6\ kVAR
+	\end{gather*}
+	\begin{gather*}
+		\text{بار}\rightarrow
+		\begin{cases}
+			P_{av} = 8kw \\
+			Q = 6kVAR
+		\end{cases}
+	\end{gather*}
+	
+	\begin{remark}
+		\ \\
+		\begin{center}
+			\begin{tikzpicture}
+				\node[]{$S = P + jQ$}
+				node[xshift=-2cm,yshift=-1cm]{\text{\rl{توان مربوط به مقاومت}}}
+				node[xshift=2cm,yshift=-1cm]{\text{\rl{توان مربوط به سلف و خازن}}};
+				\draw[->] (-0.2,-0.2) -- (-0.7,-0.7);
+				\draw[->] (1,-0.2) -- (1.7,-0.7);
+			\end{tikzpicture}
+		\end{center}
+	\end{remark}
+	\begin{gather*}
+		\text{خط}\ P_{av} = R(I_{rms})^2 = (0.05) (45.45)^2 = 103.28\ w \\
+		\text{خط}\ Q = X(I_{rms})^2 = (0.2) (45.45)^2 = 413.14\ VAR
+	\end{gather*}
+	\begin{gather*}
+		\text{\rl{توان کل حقیقی متوسط}} \Rightarrow P_{av_{T}} = P_{av_{\text{خط}}} + P_{av_{\text{بار}}} 
+		= 8000 + 103.28 = 8103.28\ w \\
+		\text{\rl{توان کل واکشی}} \Rightarrow Q_{T} = Q_{\text{خط}} + Q_{\text{بار}} 
+		= 6000 + 413.14 = 6413.14\ VAR \\ 
+		\text{\rl{توان کل مختلط}} \Rightarrow S_{T} = P_{av_{T}} + jQ_{T}
+		= 8103.28 + j6413.14 = 10333.99 \angle 38.35^\circ\ VAR
+	\end{gather*}
+	\begin{gather*}
+		|s| = V_{s_{rms}} \times I_{rms} \rightarrow V_{s_{rms}} = \frac{|s|}{I_{rms}} \\
+		V_{s_{rms}} = \frac{10333.99}{45.45} = 227.37\ rms
+	\end{gather*}
+\end{solu}
+
+
+\section{انتقال ماکزیمم توان}
+
+منظور آن انتقال ماکزیمم توان متوسط به بار است. 
+
+زمانی انتقال ماکزیمم توان از مدار بر بار اتفاق می‌افتد که مدار فقط مقاومتی باشد، یعنی اگر بار به صورت 
+$Z_L = R_L +jX_L$
+و امپدانس دیده شده مدار توسط بار به صورت 
+$Z = R + jX$
+باشد حالت ماکزیمم توان زمانی اتفاق می‌افتد که 
+$X_L = -X$
+یعنی:
+
+\begin{flushleft}
+	$\text{\rl{کل مدار}}Z_t = R + R_L$
+\end{flushleft}
+
+\begin{center}
+	\begin{minipage}{0.3\textwidth}
+		\begin{center}
+			\begin{circuitikz}
+				\draw(0,2) to[american voltage source,l_=$V_{th}$] (0,0);
+				\draw(0,2) to[generic,l=$Z_{th}$, i=$I_m$] (3,2);
+				\draw(3,2) to[generic,l=$Z_L$] (3,0);
+				\draw(0,0) to[short] (3,0);
+			\end{circuitikz}
+		\end{center}
+	\end{minipage}
+	\begin{minipage}{0.1\textwidth}
+		\begin{center}
+			$ \equiv $
+		\end{center}
+	\end{minipage}
+	\begin{minipage}{0.3\textwidth}
+		\begin{center}
+			\begin{circuitikz}
+				\node[rectangle,draw, minimum height=3cm, minimum width=2cm]{\text{مدار}};
+				\draw (2,-1) to[generic,l_=$Z_L$] (2,1);
+				\draw (1,1) to[short,i=$I_m$] (2,1);
+				\draw (1,-1) to[short] (2,-1);
+				\draw[->] (1.5,-1.5) -- (1.5,-0.5) -- (1.25,-0.5)
+				node[xshift=0.5cm,yshift=-1cm]{$ th $};
+			\end{circuitikz}
+		\end{center}
+	\end{minipage}
+\end{center}
+
+\begin{center}
+	\begin{tabular}{lc}
+		$ P_{av} = \frac{1}{2}R_L\ |I_m|^2 $ & \text{\rl{ماکزیمم توان متوسط تحویلی بار}} \\
+		$ I_m = \frac{V_{th}}{2R_L} $ \\
+		\fbox{$ Z_L = Z_{th}^\star $} & \tikz \draw[->] (0,1) -- (0,0) -- (1,0);
+	\end{tabular}
+\end{center}
 
 
 
+\begin{example}
+	در مدار شکل زیر،
+	$ Z_L $
+	چقدر باید باشد تا بیشترین توان متوسط را جذب کند؟ مقدار ماکزیمم توان متوسط بار را محاسبه کنید.
+	
+	\begin{center}
+		\begin{circuitikz}
+			\draw (0,2) to[american voltage source, l_=$5\angle 0^\circ$] (0,0);
+			\draw (2,2) to[R, l=$4\Omega$] (2,0);
+			\draw (4,2) to[generic, l=$Z_L$] (4,0);
+			\draw (0,2) to[L, l=$j3\Omega$] (2,2);
+			\draw (0,0) to[short] (4,0);
+			\draw (2,2) to[short] (4,2);
+		\end{circuitikz}
+	\end{center}
 
+\end{example}
 
+\begin{solu}
+	اولین گام: بدست آوردن معادل تونن دیده شده از دو سر بار
+	
+	\begin{gather*}
+		Z_{th} = 4\ ||\ j3 = \frac{j12}{4+j3} = \frac{36+j48}{25} = 1.44 + j1.92 \\
+		V_{th} = \frac{4}{4+j3}\times(5\angle 0^\circ) = \frac{20}{4+j3} = \frac{16-j12}{5} = 4\ \angle \ -36.86^\circ
+	\end{gather*}
 
-
-
-
-
-
-
-
-
+	\begin{center}
+		\begin{circuitikz}
+			\draw (0,2) to[american voltage source, l_=$4\angle -36.86^\circ$] (0,0);
+			\draw (2,2) to[generic, l=$Z_L$] (2,0);
+			\draw (0,2) to[generic, l=$Z_{th}$] (2,2);
+			\draw (0,0) to[short] (2,0);
+		\end{circuitikz}
+	\end{center}
+	\begin{gather*}
+		Z_L = Z_{th}^* = 1.44-j1.92 \\
+		I_m = \frac{V_{th}}{Z_{th} + Z_L} = \frac{4\ \angle\  -36.86^\circ}{2.88} = 1.73\ \angle \ -36.86^\circ \\
+		\Rightarrow P_{av} = \frac{1}{2}R_L I_m^2 = \frac{1}{2}(1.44)(1.73)^2 = 2.15\ w
+	\end{gather*}
+\end{solu}
 
 
 

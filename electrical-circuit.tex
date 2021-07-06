@@ -1,61 +1,17 @@
-\documentclass[12pt]{article}
-\usepackage[labelsep=space]{caption}
-\usepackage{fancyhdr}
-\fancyfoot[C]{\thepage}
-\fancyhead[L]{مدارهای منطقی و الکتریکی}
-\fancyhead[R]{\leftmark}
-\usepackage[hidelinks]{hyperref}
-\linespread{1.5}
-%\usepackage{background}
-%\backgroundsetup{contents=webpy.ir, opacity=0.45, scale=3}
-\usepackage{amsmath}
-\usepackage{amsthm}
-\usepackage{pstricks,pst-plot}
-\usepackage{tikz}
-\usepackage{circuitikz}
-\usepackage{xepersian}
-\usepackage{MnSymbol}
-\settextfont{XB VNiloofar}
-\setdigitfont{XB VNiloofar}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% دستورهایی برای نحوه ظاهر شدن تعاریف، قضایا، مثال‌ها و... در متن
-% باید توجه داشت که متن محیط‌های ادعایی مثل قضیه، لم، گزاره، نتیجه و ملاحظه باید به صورت ایتالیک باشد؛ ولی
-% محیط مثال و تعریف، باید به صورت ایستاده باشند. همچنین شماره تمام این محیط‌ها برای پیدا کردن راحت‌تر آن‌ها
-% باید از یکدیگر پیروی کنند.
-\theoremstyle{definition}
-\newtheorem{definition}{تعریف}[section]
-\theoremstyle{plain}
-\newtheorem{theorem}[definition]{قضیه}
-\newtheorem{lemma}[definition]{کنجکاوی}
-\newtheorem{proposition}[definition]{گزاره}
-\newtheorem{corollary}[definition]{نتیجه}
-%\newtheorem{remark}[definition]{توجه}
-\newtheorem*{remark}{توجه}
-\theoremstyle{definition}
-\newtheorem{example}[definition]{مثال}
-\newtheorem*{solu}{حل}
-\renewcommand\proofname{{\rm \textbf{برهان}}}
-
-
-
+\documentclass{myclass}
 \begin{document}
 	\pagestyle{empty}
 	%\NoBgThispage
 	\includegraphics[height=12cm]{images/besm}
 	\title{جزوه مدار الکتریکی و الکترونیکی }
-	\author{همکلاسی}
+	\author{محمد رستمی}
 	\maketitle
 	\vspace*{1.5cm}
-	\begin{abstract}
-		
-	\end{abstract}
+	\frontmatter
 	\include{preface}
-	\newpage
 	\tableofcontents
-	\newpage
-	\pagestyle{fancy}	
 	\include{intro}
+	\mainmatter
 	\include{section01}
 	\include{section02}
 	\include{section03}
@@ -64,4 +20,7 @@
 	\include{section06}
 	\include{section07}
 	\include{section08}
+	\include{section09}
+	\include{section10}
+	\include{section11}
 \end{document}

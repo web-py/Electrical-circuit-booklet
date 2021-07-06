@@ -1,0 +1,470 @@
+\chapter{ترانزیستورهای دوقطبی}
+
+ترانزیستور یک عنصر الکترونیکی است برای تبدیل سیگنالهای ضعیف به سیگنال‌های قوی. ترانزیستور عنصری سه سر است. ترانزیستورها به طور کلی به دو نوع تقسیم می‌شوند:
+\begin{enumerate}
+	\item
+	ترانزیستورهای دو قطبی(BjT)
+	\item
+	ترانزیستورهای اثر میدانی(FET)
+	\begin{itemize}
+		\item JFET
+		\item MOS-FET
+	\end{itemize}
+\end{enumerate}
+
+
+ترانزیستورهای دو قطبی
+\lr{(BJT)}
+از کنار هم قرار گرفتن دو دیود ساخته شده‌اند. که شکل 
+\ref{fig:bjt}
+ساختار فیزیک و نماد مداری آن را نمایش می‌دهد.
+
+\begin{figure}[!ht]
+	\centering
+	\subfloat[ترانزیستور \lr{NPN}]{\includegraphics[width=0.4\columnwidth]{images/sec11/npn.jpg}}
+	\qquad
+	\subfloat[ترانزیستور \lr{PNP}]{\includegraphics[width=0.4\columnwidth]{images/sec11/pnp.jpg}}\\
+	\subfloat[نمایش مداری ترانزیستور \lr{NPN}]{\includegraphics[width=0.4\columnwidth]{images/sec11/npns.jpg}}
+	\qquad
+	\subfloat[نمایش مداری ترانزیستور \lr{PNP}]{\includegraphics[width=0.4\columnwidth]{images/sec11/pnps.jpg}}\\
+	\caption{ساختار فیزیکی ترانزیستورهای دوقطبی و نمایش مداری آنها}
+	\label{fig:bjt}
+\end{figure}
+
+\begin{definition}[تغذیه(بایاسینگ) ترانزیستور]
+	برای اینکه بتوان از ترانزیستور به عنوان تقویت کننده استفاده نمود، ابتدا باید ترانزیستور را از نظر ولتاژ 
+	\lr{DC}
+	تغذیه نمود. به عمل تغذیه‌ی ولتاژ پایه‌های ترانزیستور اصطلاحاً بایاسینگ ترانزیستور گفته می‌شود.
+\end{definition}
+
+\begin{remark}
+	در ادامه این جزوه فقط ترانزیستورهای 
+	\lr{npn}
+	بررسی می‌شوند؛ هر چند قوانین هر دو نوع یکی است.
+\end{remark}
+
+شرط اینکه یک ترانزیستور روشن شود این است که باید ولتاژ دیود 
+\lr{ Emitter Base}
+آن یعنی 
+$V_{EB}$
+به 
+$0.7$
+برسد. و دیود 
+\lr{Collector Base}
+وابسته به دیود
+\lr{ Emitter Base}
+می‌باشد. این یعنی اگر بتوانید دیود 
+\lr{ Emitter Base}
+را روشن کنید، آن یکی دیود روشن خواهد شد.
+
+در صورتی ولتاژ 
+\lr{EB}
+بیشتر از 
+$0.7$
+باشد؛ گویند ترانزیستور در بایاس ناحیه فعال است. در این حالت در تحلیل مداری، ولتاژ 
+\lr{EB}
+مقدار ثابت 
+$0.7$
+را دارد. برای دیود 
+\lr{CB}
+تقریباً محدودیت مقداری نداریم.
+
+در ترانزیستورهای 
+\lr{npn}
+هم از پایه کلکتور و هم از پایه بیس جریان وارد می‌شود.
+\begin{center}
+	\includegraphics[scale=0.3]{images/sec11/npni.jpg}
+\end{center}
+
+و رابطه‌ی بین جریان‌ها به صورت زیر خواهد بود:
+\begin{gather*}
+	\begin{cases}
+		I_E = I_B + I_C \\
+		I_C = \beta I_B
+	\end{cases}
+	\Rightarrow I_E = (\beta + 1) I_B
+\end{gather*}
+
+\begin{remark}
+	به صورت قراردادی برای جریان و ولتاژ 
+	\lr{DC}
+	از حروف بزرگ انگلیسی استفاده می‌شود و برای جریان و ولتاژ 
+	\lr{AC}
+	از حروف کوچک استفاده می‌شود.
+\end{remark}
+بین جریان کلکتور و ایمیتر نیز رابطه‌ای به صورت زیر وجود دارد:
+
+\begin{gather*}
+	I_C = \alpha I_E \rightarrow \text{\rl{آلفا مقدار خیلی کوچکی است.}}
+\end{gather*}
+
+رابطه‌ی بین آلفا و بتا را نیز می‌توان به صورت زیر محاسبه کرد:
+\begin{gather*}
+	I_E = I_B + I_C \rightarrow I_E = \frac{I_E}{\beta + 1} + \alpha I_E \\
+	\rightarrow 1 = \frac{1}{\beta + 1} + \alpha \rightarrow 1-\alpha = \frac{1}{\beta + 1} \Rightarrow \alpha = \frac{\beta}{\beta + 1}
+\end{gather*}
+
+\begin{remark}
+	نام دیگر 
+	$\beta$،
+	$h_{FE}$
+	است.
+\end{remark}
+
+از کاربردهای ترانزیستور می‌توان به موارد زیر اشاره کرد:
+\begin{itemize}
+	\item[-]
+	ترانزیستور به عنوان تقویت کننده
+	\item[-]
+	مدارهای سوییچینگ
+\end{itemize}
+
+وقتی که میخواهیم از ترانزیستور به عنوان تقویت کننده استفاده کنیم، نوع مدار اهمیت پیدا می‌کند. که براین اساس انواع مدارها عبارتند از:
+\begin{enumerate}
+	\item
+	امیتر مشترک
+	
+	\begin{center}
+		\begin{circuitikz}
+			\node[npn](npn){};
+			\draw (npn.E) node[below]{E};
+			\draw (npn.C) node[above]{C};
+			\draw (npn.B) node[above left]{B};
+			\draw (1,0.8) to[short,*-] (npn.C)
+			node[yshift=-0.75cm, xshift = 1.5cm]{خروجی};
+			
+			\draw (1,-0.8) to[short,*-] (npn.E);
+			
+			\draw (-2,0) to[short,*-] (npn.B)
+			node[yshift=-0.375cm, xshift = -0.5cm]{ورودی};
+			\draw (-2,-0.8) to[short,*-] (npn.E);
+			
+			
+			
+		\end{circuitikz}
+	\end{center}
+همانطور که مشاهده می‌کنید بین ورودی و خروجی پایه امیتر مشترک است به همین خاطر به آن امیتر مشترک گفته می‌شود.
+	
+	\item
+	کلکتور مشترک
+	
+		\begin{center}
+		\begin{circuitikz}
+			\node[npn](npn){};
+			\draw (npn.E) node[below]{E};
+			\draw (npn.C) node[above]{C};
+			\draw (npn.B) node[above left]{B};
+			\draw (2,0.8) to[short] (npn.C);
+			\draw (-0.5,-2) to[short,*-] (2,-2) to[short] (2,0.8);
+			
+			\draw (1,-0.75) to[short,*-] (npn.E);
+			
+			\draw (-2,0) to[short,*-] (npn.B);
+		
+			\node[xshift=0.5cm, yshift=-1.5cm]{خروجی};
+			
+			\node[xshift=-1.5cm, yshift=-0.5cm]{ورودی};
+		\end{circuitikz}
+	\end{center}
+
+	مدار کلکتور مشترک خیلی کاربردی نیست و فقط در موارد خاصی استفاده می‌شود.
+	\item
+	بیس مشترک
+	
+			\begin{center}
+		\begin{circuitikz}
+			
+			\node[npn,rotate=90](npn){};
+			\node[xshift=-1cm]{C};
+			\node[xshift=1cm]{E};
+			\node[yshift=-1.2cm]{B};
+			
+			\draw (-1,-0.85) to[short,*-*] (1,-0.85);
+			\node[xshift=1cm,yshift=-0.5cm]{ورودی};
+			\node[xshift=-1cm,yshift=-0.5cm]{خروجی};
+		\end{circuitikz}
+	\end{center}
+\end{enumerate}
+
+تفاوت این نوع‌ها در مکان ورودی یا خروجی است.
+
+\section{نواحی کار ترانزیستورهای دوقطبی}
+
+\begin{description}
+	\item[ناحیه فعال] 
+	زمانیکه ولتاژ
+	\lr{EB}
+	 بیشتر از
+	$0.7$
+	باشد و ولتاژ 
+	\lr{CE}
+	 هم بیشتر از ولتاژ اشباع ترانزیستور
+	 $(V_{CE}(sat))$
+	  باشد. بنابراین ترانزیستور فعال است و داریم که:
+	  \begin{gather*}
+	  	 \begin{cases}
+	  	 	V_{EB} = 0.7 \\
+	  	 	I_E = (\beta + 1)I_B \\
+	  	 	I_C = \beta I_B
+	  	 \end{cases}	  	 
+	  \end{gather*}
+	  \begin{remark}
+	  	ولتاژ اشباع ترانزیستور در مسئله داده می‌شود و مقدار آن عموماً  
+	  	$0.1$
+	  	یا
+	  	$0.2$
+	  	است.
+	  \end{remark}
+  
+  	\item[ناحیه اشباع] 
+  	اگر ولتاژ 
+  	\lr{CE}
+  	بعد از تحلیل کمتر از ولتاژ اشباع ترانزیستور
+  	$(V_{CE}(sat))$
+  	باشد. در این حالت 
+  	$V_{CE}$
+  	برابر مقدار اشباع یعنی 
+  	$(V_{CE}(sat))$
+  	در نظر گرفته می‌شود و رابطه‌ای بین جریان شاخه‌ها برقرار \textbf{نیست}.
+  	
+  	\item[ناحیه قطع] 
+  	زمانی است که ترانزیستور روشن نباشد؛ یعنی بعد از تحلیل مقدار 
+  	$V_{EB}$
+  	کمتر از 
+  	$0.7$
+  	باشد. در این حالت هیچ جریانی در هیچ کدام از پایه‌های ترانزیستور برقرار نیست.
+\end{description}
+
+\begin{remark}
+	این دو مدار معادل هستند.
+	
+\begin{center}
+		\begin{minipage}{0.3\textwidth}
+		\begin{center}
+			\begin{circuitikz}
+				\draw (0,2) to[battery1] (0,0);
+				\draw (2,2) to[R] (2,0);
+				\draw (4,2) to[capacitor] (4,0);
+				
+				\draw (0,2) to[R] (2,2);
+				\draw (2,2) to[L] (4,2);
+				\draw (0,0) to[short] (4,0);
+				
+				\draw (2,0) node[ground]{} (2,1);
+			\end{circuitikz}
+		\end{center}
+	\end{minipage}
+	\hspace{2cm}
+	\begin{minipage}{0.3\columnwidth}
+			\begin{center}
+			\begin{circuitikz}
+				\draw (0,2) to[battery1] (0,0);
+				\draw (2,2) to[R] (2,0);
+				\draw (4,2) to[capacitor] (4,0);
+				
+				\draw (0,2) to[R] (2,2);
+				\draw (2,2) to[L] (4,2);
+				
+				\draw (0,0) node[ground]{} (0,1);
+				\draw (2,0) node[ground]{} (2,1);
+				\draw (4,0) node[ground]{} (4,1);
+			\end{circuitikz}
+		\end{center}
+	\end{minipage}
+\end{center}
+معمولاً در الکترونیک از فرم نمایش سمت چپ استفاده می‌شود.
+\end{remark}
+
+\begin{example}
+	در مدار شکل زیر، برای ترانزیستور
+	$V_{CE(sat)} = 0.2,\ \beta = 100,\ V_{EB} = 0.7 $
+	است. مقدار جریان کلکتور
+	$(I_C)$
+	و 
+	$V_{CE}$
+	را به دست آورید.
+	
+		\begin{center}
+		\begin{circuitikz}
+			\node[npn](npn){};
+			\draw (-3,0) to[R,l=$8k\Omega$] (npn.B) node[yshift=-0.5cm,xshift=-1cm]{$R_B$};
+			\draw (-3,0) to[battery1,l_=$1.5V$] (-3,-2);
+			\draw (-3,-2) node[ground]{} (-3,-1);
+			
+			\draw (0,-0.7) node[ground]{} (npn.E);
+			
+			\draw (npn.C) to[R,l=$1k\Omega$] (3,0.85) node[yshift=-0.5cm,xshift=-1.5cm]{$R_C$};
+			\draw (3,0.85) to[battery1,l=$20V$] (3,-1) node[xshift=-0.5cm,yshift=0.6cm]{$V_{cc}$};
+			\draw (3,-1) node[ground]{} (3,0);
+		\end{circuitikz}
+	\end{center}
+	
+\end{example}
+
+\begin{remark}
+	معمولاً در مدارهای الکترونیکی ولتاژ پایه کلکتور را با 
+	$V_{CC}$
+	نمایش می‌دهند. ولتاژی که روی پایه‌ی بیس باشد با 
+	$V_{BB}$
+	نمایش می‌دهند. و اگر در پایه امیتر هم ولتاژ داشتیم آن را با 
+	$V_{EE}$
+	نمایش می‌دهند.
+\end{remark}
+\begin{solu}
+	برای حل مدارهای ترانزیستوری فرض می‌کنیم ترانزیستور در ناحیه فعال است و با این فرض مسئله را حل می‌کنیم. اگر به تناقضی برخورد نکردیم(منفی شدن جریان در یکی از شاخه‌ها) ترانزیستور در ناحیه قطع قرار ندارد پس یا فعال است یا اشباع. با اندازه‌گیری ولتاژ 
+	$V_{CE}$
+	می‌توان فعال یا اشباع بودن را تشخیص داد. اگر
+	$V_{CE} > V_{CE(sat)}$
+	باشد یعنی ترانزیستور در ناحیه فعال است. اگر
+	$V_{CE} < V_{CE(sat)}$
+	باشد یعنی ترانزیستور در ناحیه اشباع است. 
+	
+	برای حل این مسئله، ورودی که به بیس اعمال میشه(مگر اینکه مدار بیس مشترک باشد) پس در ورودی یک 
+	\lr{KVL}
+	اجرا می‌کنیم یعنی حلقه شماره ۱، و فرض کردیم که ترانزیستور فعال است پس ولتاژ 
+	$V_{EB} = 0.7$
+	خواهد بود.
+	
+	\begin{center}
+		\begin{circuitikz}
+			\node[npn](npn){};
+			\draw (-3,0) to[R,l=$8k\Omega$] (npn.B) node[yshift=-0.5cm,xshift=-1cm]{$R_B$};
+			\draw (-3,0) to[battery1,l_=$1.5V$] (-3,-2);
+			\draw (-3,-2) node[ground]{} (-3,-1);
+			
+			\draw (0,-0.7) node[ground]{} (npn.E);
+			
+			\draw (npn.C) to[R,l=$1k\Omega$] (3,0.85) node[yshift=-0.5cm,xshift=-1.5cm]{$R_C$};
+			\draw (3,0.85) to[battery1,l=$20V$] (3,-1) node[xshift=-0.5cm,yshift=0.6cm]{$V_{cc}$};
+			\draw (3,-1) node[ground]{} (3,0);
+			
+			\draw[<-,blue] (-1.5,-1) arc(30:270:0.25) node[blue,yshift=0.25cm]{1};
+		\end{circuitikz}
+	\end{center}
+	\begin{gather*}
+		-V_{BB} + R_BI_B + V_{EB} = 0 \\
+		-1.5 + 8k \times I_B + 0.7 = 0 \\
+		I_B = \frac{1.5-0.7}{8k}=0.1\ mA \\
+		I_C = \beta I_B = 100 \times 0.1\ mA = 10 mA 
+	\end{gather*}
+	حال در شاخه کلکتور جریان به صورت زیر است. پس با توجه به جهت جریان 
+	\lr{KVL}
+	شماره ۲ را اجرا می‌کنیم:
+		\begin{center}
+		\begin{circuitikz}
+			\node[npn](npn){};
+			\draw (-3,0) to[R,l=$8k\Omega$] (npn.B) node[yshift=-0.5cm,xshift=-1cm]{$R_B$};
+			\draw (-3,0) to[battery1,l_=$1.5V$] (-3,-2);
+			\draw (-3,-2) node[ground]{} (-3,-1);
+			
+			\draw (0,-0.7) node[ground]{} (npn.E);
+			
+			\draw (npn.C) to[R,l=$1k\Omega$,i<=$I_C$] (3,0.85) node[yshift=-0.5cm,xshift=-1.5cm]{$R_C$};
+			\draw (3,0.85) to[battery1,l=$20V$] (3,-1) node[xshift=-0.5cm,yshift=0.6cm]{$V_{cc}$};
+			\draw (3,-1) node[ground]{} (3,0);
+			
+			\draw[<-,blue] (-1.5,-1) arc(30:270:0.25) node[blue,yshift=0.25cm]{1};
+			\draw[->,red] (1.5,0) arc(30:270:0.25) node[red,yshift=0.25cm]{2};
+		\end{circuitikz}
+	\end{center}
+
+	\begin{gather*}
+		-V_{CC} + R_CI_C + V_{CE} = 0 \\
+		-20 + 1k\times 10m + V_{CE} = 0 \rightarrow V_{CE} = 10\ V
+	\end{gather*}
+حال از آنجایی که 
+$V_{CE} > V_{CE(sat)}$
+است یعنی ترانزیستور در ناحیه فعال است و فرض ما درست بوده است.
+\end{solu}
+
+\begin{example}[تمرین]
+	بعد از تعیین ناحیه کاری، جریان بیس، امیتر و کلکتور را بدست آورید.
+	\begin{center}
+		\begin{circuitikz}
+			\node[npn](npn){};
+			
+			
+			\draw (-1.5,-2) to[R,l=$2k\Omega$] (-1.5,-0.7);
+			\draw (0,-2) to[R,l_=$1k\Omega$] (0,-0.7);
+			
+			\draw (-1.5,2) to[R,l_=$2k\Omega$] (-1.5,0.7);
+			\draw (0,2) to[R,l=$3k\Omega$] (0,0.7);
+			
+			\draw (-1.5,-2) node[ground]{} (-1.5,-2);
+			\draw (0,-2) node[ground]{} (0,-2);
+			
+			\draw (-2,2) to[short] (0.5,2) node[yshift=0.5cm,xshift=-1cm]{$V_{cc}=12v$};
+			\draw (-1.5,0.7) to[short] (-1.5,-0.7);
+			\draw (-1.5,0) to[short] (-0.7,0);
+		\end{circuitikz}
+	\end{center}
+\end{example}
+
+\begin{solu}
+	نکته حل این مثال این است که دو مقاومت سمت چپ باید معادل شود. از نظر تحلیلی دو مقاومت سمت چپ را موازی در نظر می‌گیرند. زیرا برای تعیین موازی بودن منبع را در نظر نمی‌گیرند بنابراین منبع بالای شاخه مقاومت ۲کیلواهمی را حذف کنید و آنرا به زمین متصل کنید. این یعنی دو مقاومت موازی هستند.
+	\begin{remark}
+		هیچ وقت منبع را به طور مستقیم به ترانزیستور متصل نمی‌کنند زیرا:
+		\begin{itemize}
+			\item
+			ممکن است جریان شدیدی وارد شود.
+			\item
+			نویز سیستم بالا می‌رود.
+		\end{itemize}
+	به همین خاطر در مدارهای ترانزیستور از شاخه‌ای به نام شاخه‌ی تغذیه(بایاس) ترانزیستور استفاده می‌شود. در مثال ما مقاومت‌های ۲کیلواهمی شاخه‌ی تغذیه ترانزیستور را تشکیل می‌دهند.
+	\end{remark}
+	پس با این توضیحات معادل مدار بالا به صورت زیر است:
+		\begin{center}
+		\begin{circuitikz}
+			\node[npn](npn){};
+			\draw (-3,0) to[R] (npn.B) node[yshift=-0.5cm,xshift=-1cm]{$R_T$};
+			\draw (-3,0) to[battery1,l_=$V_T$] (-3,-2);
+			\draw (-3,-2) node[ground]{} (-3,-1);
+			
+			
+			
+			\draw (npn.C) to[R,l=$3k\Omega$,i<=$I_C$] (0,3) node[yshift=-1cm,xshift=0.75cm]{$R_C$};
+			\draw (-0.5,3) to[short] (0.5,3) node[yshift=0.25cm,xshift=-0.5cm]{$V_{cc}$};
+	
+			\draw (npn.E) to[R,l_=$1k\Omega$] (0,-3) node[yshift=1cm,xshift=0.75cm]{$R_E$};
+			\draw (0,-3) node[ground]{} (0,-2);
+			
+		\end{circuitikz}
+	\end{center}
+	\begin{gather*}
+		R_T = R_1 \parallel R_2 = \frac{R_1 \times R_2}{R_1 + R_2} = 
+	\end{gather*}
+	$V_T$
+	نیز ولتاژ دو سر مقاومت 
+	$R_1$
+	است.
+	\begin{gather*}
+		V_T = \frac{R_1}{R_1 + R_2}V_{cc} = 
+	\end{gather*}
+	در حل این سوال ما دو مقاومت را موازی فرض کردیم اما ولتاژ آنها یکی نیست(طبق دانش قبلی از مدارهای الکتریکی). این خاصیت در مدارهای ترانزیستوری رخ میدهد، به چند دلیل:
+	\begin{itemize}
+		\item
+		جریان بیس مقدار خیلی کمی است. در تحلیل‌های واقعی صفر فرض می‌شود.
+		\item
+		وقتی می‌خواهیم وضعیت مقاومت‌ها را در \textbf{الکترونیک} بسنجیم منابع را صفر می‌کنیم. اما وقتی میخواهیم ولتاژ دوسر را بررسی کنیم وضعیت اصلی مقاومت‌ها در نظر گرفته می‌شود.
+	\end{itemize}
+\end{solu}
+
+
+\section{ترانزیستورهای اثرمیدانی}
+
+ترانزیستورهای اثرمیدانی خود دو دسته هستند:
+	\begin{itemize}
+	\item 
+	ترانزیستورهای پیوندی(JFET)
+	\item MOS-FET
+\end{itemize}
+رفتار عملکردی هر دو مشابه است و فقط فناوری ساخت متفاوت است. این ترانزیستورها در مدار به صورت زیر نمایش می‌دهند.
+
+\begin{figure}[!ht]
+	\centering
+	\subfloat[نمایش مداری \lr{NFET}]{\includegraphics[width=0.4\columnwidth]{images/sec11/nfet.jpg}}
+	\qquad
+	\subfloat[نمایش مداری \lr{PFET}]{\includegraphics[width=0.4\columnwidth]{images/sec11/pfet.jpg}}\\
+
+	\label{fig:fet}
+\end{figure}
